@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>بوابة التمريض | قريبًا</title>
+
+    <meta name="description"
+        content="بوابة التمريض تحت التطوير حاليًا. نعمل على تجهيز تجربة تعليمية أفضل لطلاب التمريض.">
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+            font-family: Arial, Tahoma, sans-serif;
+            background:
+                radial-gradient(circle at top right, rgba(14, 165, 233, 0.18), transparent 35%),
+                radial-gradient(circle at bottom left, rgba(30, 64, 175, 0.20), transparent 35%),
+                linear-gradient(135deg, #f8fbff, #eef6ff);
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            color: #0f172a;
+
+            overflow: hidden;
+        }
+
+        /* خلفية بسيطة */
+
+        .background {
+            position: fixed;
+            inset: 0;
+            overflow: hidden;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .circle {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(1px);
+            opacity: 0.25;
+        }
+
+        .circle.one {
+            width: 280px;
+            height: 280px;
+            background: #38bdf8;
+            top: -100px;
+            right: -80px;
+        }
+
+        .circle.two {
+            width: 220px;
+            height: 220px;
+            background: #2563eb;
+            bottom: -90px;
+            left: -60px;
+        }
+
+        /* الكارت */
+
+        .container {
+            position: relative;
+            z-index: 2;
+
+            width: min(92%, 650px);
+
+            background: rgba(255, 255, 255, 0.88);
+
+            border: 1px solid rgba(255, 255, 255, 0.8);
+
+            border-radius: 28px;
+
+            padding: 55px 35px;
+
+            text-align: center;
+
+            box-shadow:
+                0 25px 70px rgba(15, 23, 42, 0.12);
+
+            backdrop-filter: blur(12px);
+
+            animation: appear 0.8s ease;
+        }
+
+        /* اللوجو */
+
+        .logo {
+            width: 95px;
+            height: 95px;
+
+            margin: 0 auto 25px;
+
+            border-radius: 28px;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            font-size: 48px;
+
+            background: linear-gradient(
+                135deg,
+                #0f3c68,
+                #0ea5e9
+            );
+
+            box-shadow:
+                0 15px 35px rgba(14, 165, 233, 0.28);
+
+            animation: float 3s ease-in-out infinite;
+        }
+
+        /* العنوان */
+
+        h1 {
+            font-size: clamp(30px, 6vw, 46px);
+
+            color: #0f3c68;
+
+            margin-bottom: 14px;
+
+            font-weight: 800;
+        }
+
+        .subtitle {
+            font-size: clamp(19px, 4vw, 25px);
+
+            color: #0ea5e9;
+
+            font-weight: 700;
+
+            margin-bottom: 25px;
+        }
+
+        /* الرسالة */
+
+        .message {
+            font-size: 17px;
+
+            line-height: 1.9;
+
+            color: #475569;
+
+            max-width: 500px;
+
+            margin: auto;
+        }
+
+        .heart {
+            display: inline-block;
+
+            animation: heartbeat 1.5s infinite;
+        }
+
+        /* قريبًا */
+
+        .coming-soon {
+            margin: 30px auto 0;
+
+            display: inline-flex;
+
+            align-items: center;
+
+            gap: 10px;
+
+            padding: 13px 25px;
+
+            border-radius: 50px;
+
+            background: #eff6ff;
+
+            color: #0f3c68;
+
+            border: 1px solid #dbeafe;
+
+            font-size: 16px;
+
+            font-weight: 700;
+        }
+
+        .dot {
+            width: 9px;
+            height: 9px;
+
+            background: #0ea5e9;
+
+            border-radius: 50%;
+
+            animation: pulse 1.5s infinite;
+        }
+
+        /* الفوتر */
+
+        .footer {
+            margin-top: 35px;
+
+            color: #94a3b8;
+
+            font-size: 13px;
+        }
+
+        /* Animation */
+
+        @keyframes appear {
+
+            from {
+                opacity: 0;
+                transform: translateY(25px) scale(0.97);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+
+        }
+
+        @keyframes float {
+
+            0%, 100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-8px);
+            }
+
+        }
+
+        @keyframes pulse {
+
+            0% {
+                transform: scale(1);
+                opacity: 1;
+            }
+
+            50% {
+                transform: scale(1.6);
+                opacity: 0.5;
+            }
+
+            100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+
+        }
+
+        @keyframes heartbeat {
+
+            0%, 100% {
+                transform: scale(1);
+            }
+
+            25% {
+                transform: scale(1.15);
+            }
+
+            40% {
+                transform: scale(1);
+            }
+
+            60% {
+                transform: scale(1.12);
+            }
+
+        }
+
+        /* الموبايل */
+
+        @media (max-width: 600px) {
+
+            .container {
+                padding: 45px 22px;
+
+                border-radius: 24px;
+            }
+
+            .logo {
+                width: 82px;
+                height: 82px;
+
+                font-size: 40px;
+
+                border-radius: 24px;
+            }
+
+            .message {
+                font-size: 15px;
+            }
+
+            .coming-soon {
+                font-size: 14px;
+                padding: 11px 20px;
+            }
+
+        }
+
+    </style>
+</head>
+
+
+<body>
+
+    <div class="background">
+
+        <div class="circle one"></div>
+
+        <div class="circle two"></div>
+
+    </div>
+
+
+    <main class="container">
+
+        <div class="logo">
+            🩺
+        </div>
+
+
+        <h1>
+            بوابة التمريض
+        </h1>
+
+
+        <div class="subtitle">
+            🚧 المنصة تحت التطوير حاليًا
+        </div>
+
+
+        <p class="message">
+
+            نعمل حاليًا على تجهيز وتطوير المنصة
+            لتقديم تجربة تعليمية أفضل وأقوى لطلاب التمريض.
+
+            <br>
+
+            نراكم قريبًا إن شاء الله
+            <span class="heart">❤️</span>
+
+        </p>
+
+
+        <div class="coming-soon">
+
+            <span class="dot"></span>
+
+            قريبًا... نعود إليكم بشكل جديد
+
+        </div>
+
+
+        <div class="footer">
+
+            © 2026 بوابة التمريض
+
+        </div>
+
+    </main>
+
+</body>
+
+</html>
