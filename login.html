@@ -15,61 +15,306 @@
     content="#0b2a43"
 >
 
-<title>
-    تسجيل الدخول | مسار التمريض
-</title>
+<title>تسجيل الدخول | مسار التمريض</title>
 
-</head><body><!-- =========================
-     Authentication Page
-========================== -->
+<link rel="stylesheet" href="styles/main.css">
+
+<style>
+
+    .auth-page {
+        min-height: calc(100vh - 76px);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 50px 20px;
+        background: var(--background);
+    }
+
+    .auth-card {
+        width: min(100%, 460px);
+        background: var(--white);
+        border: 1px solid var(--border);
+        border-radius: 24px;
+        padding: 35px;
+        box-shadow: var(--shadow);
+    }
+
+    .auth-logo {
+        width: 70px;
+        height: 70px;
+        margin: 0 auto 18px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: var(--accent-light);
+        border-radius: 20px;
+        font-size: 36px;
+    }
+
+    .auth-heading {
+        text-align: center;
+        margin-bottom: 28px;
+    }
+
+    .auth-heading h1 {
+        color: var(--primary);
+        font-size: 30px;
+        margin-bottom: 8px;
+    }
+
+    .auth-heading p {
+        color: var(--text-light);
+        font-size: 14px;
+    }
+
+    .auth-form {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+    }
+
+    .form-group {
+        display: flex;
+        flex-direction: column;
+        gap: 7px;
+    }
+
+    .form-group label {
+        color: var(--primary);
+        font-size: 14px;
+        font-weight: 700;
+    }
+
+    .form-group input {
+        width: 100%;
+        min-height: 50px;
+        padding: 10px 14px;
+        border: 1px solid var(--border);
+        border-radius: 11px;
+        outline: none;
+        background: #fff;
+        color: var(--text);
+        transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .form-group input:focus {
+        border-color: var(--accent);
+        box-shadow: 0 0 0 3px rgba(24, 166, 200, 0.1);
+    }
+
+    .password-wrapper {
+        position: relative;
+    }
+
+    .password-wrapper input {
+        padding-left: 55px;
+    }
+
+    .password-toggle {
+        position: absolute;
+        left: 10px;
+        top: 50%;
+        transform: translateY(-50%);
+        border: none;
+        background: transparent;
+        cursor: pointer;
+        font-size: 18px;
+        padding: 5px;
+    }
+
+    .forgot-password {
+        text-align: left;
+        margin-top: -5px;
+    }
+
+    .forgot-password button {
+        border: none;
+        background: transparent;
+        color: var(--accent);
+        cursor: pointer;
+        font-size: 13px;
+        font-weight: 700;
+    }
+
+    .auth-submit {
+        width: 100%;
+        border: none;
+        margin-top: 5px;
+    }
+
+    .divider {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        margin: 22px 0;
+        color: var(--text-light);
+        font-size: 13px;
+    }
+
+    .divider::before,
+    .divider::after {
+        content: "";
+        flex: 1;
+        height: 1px;
+        background: var(--border);
+    }
+
+    .google-btn {
+        width: 100%;
+        min-height: 50px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        border: 1px solid var(--border);
+        border-radius: 11px;
+        background: #fff;
+        color: var(--text);
+        font-weight: 700;
+        cursor: pointer;
+        transition: 0.2s ease;
+    }
+
+    .google-btn:hover {
+        border-color: var(--accent);
+        background: var(--accent-light);
+    }
+
+    .google-icon {
+        font-size: 20px;
+        font-weight: 900;
+    }
+
+    .auth-message {
+        display: none;
+        margin-top: 16px;
+        padding: 12px 14px;
+        border-radius: 10px;
+        text-align: center;
+        font-size: 13px;
+    }
+
+    .auth-message.error {
+        display: block;
+        background: #fff0f0;
+        color: #b42318;
+    }
+
+    .auth-message.success {
+        display: block;
+        background: #ecfdf3;
+        color: #067647;
+    }
+
+    .register-link {
+        margin-top: 24px;
+        text-align: center;
+        color: var(--text-light);
+        font-size: 14px;
+    }
+
+    .register-link a {
+        color: var(--accent);
+        font-weight: 800;
+    }
+
+    .back-home {
+        display: block;
+        margin-top: 18px;
+        text-align: center;
+        color: var(--text-light);
+        font-size: 13px;
+    }
+
+    .back-home:hover {
+        color: var(--accent);
+    }
+
+    @media (max-width: 600px) {
+
+        .auth-page {
+            padding: 30px 12px;
+        }
+
+        .auth-card {
+            padding: 26px 20px;
+            border-radius: 20px;
+        }
+
+        .auth-heading h1 {
+            font-size: 26px;
+        }
+
+    }
+
+</style>
+
+</head><body><!-- HEADER -->
+
+<header class="site-header">
+
+    <div class="container header-inner">
+
+        <a href="index.html" class="brand">
+
+            <span class="brand-icon">
+                🩺
+            </span>
+
+            <span class="brand-text">
+                مسار التمريض
+            </span>
+
+        </a>
+
+
+        <div class="header-actions">
+
+            <a
+                href="index.html"
+                class="btn btn-outline"
+            >
+                الرئيسية
+            </a>
+
+        </div>
+
+    </div>
+
+</header>
+
+
+
+<!-- LOGIN -->
 
 <main class="auth-page">
 
-    <section class="auth-card">
+    <div class="auth-card">
 
 
-        <!-- Header -->
+        <div class="auth-logo">
+            🩺
+        </div>
 
-        <div class="auth-header">
 
-            <a
-                href="/"
-                class="auth-brand"
-            >
-
-                <span class="brand-icon">
-                    🩺
-                </span>
-
-                <span>
-                    مسار التمريض
-                </span>
-
-            </a>
-
+        <div class="auth-heading">
 
             <h1>
                 تسجيل الدخول
             </h1>
 
-
             <p>
-                أهلاً بك مرة أخرى 👋
+                ادخل إلى حسابك في مسار التمريض
             </p>
 
         </div>
 
 
-
-        <!-- Login Form -->
-
         <form
             id="loginForm"
-            novalidate
+            class="auth-form"
         >
 
-
-            <!-- Email -->
 
             <div class="form-group">
 
@@ -77,20 +322,18 @@
                     البريد الإلكتروني
                 </label>
 
-
                 <input
-                    id="email"
                     type="email"
-                    autocomplete="email"
+                    id="email"
+                    name="email"
                     placeholder="example@email.com"
+                    autocomplete="email"
                     required
                 >
 
             </div>
 
 
-
-            <!-- Password -->
 
             <div class="form-group">
 
@@ -98,356 +341,193 @@
                     كلمة المرور
                 </label>
 
+                <div class="password-wrapper">
 
-                <input
-                    id="password"
-                    type="password"
-                    autocomplete="current-password"
-                    placeholder="••••••••"
-                    required
-                >
+                    <input
+                        type="password"
+                        id="password"
+                        name="password"
+                        placeholder="أدخل كلمة المرور"
+                        autocomplete="current-password"
+                        required
+                    >
+
+                    <button
+                        type="button"
+                        class="password-toggle"
+                        id="passwordToggle"
+                        aria-label="إظهار كلمة المرور"
+                    >
+                        👁️
+                    </button>
+
+                </div>
 
             </div>
 
 
 
-            <!-- Login Button -->
+            <div class="forgot-password">
+
+                <button
+                    type="button"
+                    id="forgotPassword"
+                >
+                    نسيت كلمة المرور؟
+                </button>
+
+            </div>
+
+
 
             <button
-                id="loginButton"
                 type="submit"
                 class="btn btn-primary btn-large auth-submit"
             >
-
                 تسجيل الدخول
-
             </button>
 
-
-
-            <!-- Google -->
-
-            <button
-                id="googleLoginButton"
-                type="button"
-                class="google-btn"
-            >
-
-                <span class="google-icon">
-                    G
-                </span>
-
-                المتابعة باستخدام Google
-
-            </button>
-
-
-
-            <!-- Message -->
-
-            <div
-                id="loginMessage"
-                class="auth-message"
-                aria-live="polite"
-            ></div>
 
         </form>
 
 
 
-        <!-- Register -->
+        <div class="divider">
+            أو
+        </div>
 
-        <div class="auth-footer">
+
+
+        <button
+            type="button"
+            class="google-btn"
+            id="googleLogin"
+        >
+
+            <span class="google-icon">
+                G
+            </span>
+
+            <span>
+                المتابعة باستخدام Google
+            </span>
+
+        </button>
+
+
+
+        <div
+            id="authMessage"
+            class="auth-message"
+        ></div>
+
+
+
+        <div class="register-link">
 
             ليس لديك حساب؟
 
-            <a href="/register.html">
+            <a href="register.html">
                 إنشاء حساب جديد
             </a>
 
         </div>
 
 
+        <a
+            href="index.html"
+            class="back-home"
+        >
+            ← العودة إلى الرئيسية
+        </a>
 
-        <!-- Back -->
 
-        <div class="auth-back">
-
-            <a href="/">
-                ← العودة إلى الصفحة الرئيسية
-            </a>
-
-        </div>
-
-    </section>
+    </div>
 
 </main>
 
 
 
-<!-- =========================
-     Firebase Authentication
-========================== -->
+<!-- مؤقتًا: وظائف الواجهة فقط -->
 
-<script type="module">
+<script>
 
-    import {
-        loginUser,
-        loginWithGoogle
-    } from "/src/firebase/auth.js";
+    const passwordInput =
+        document.getElementById("password");
 
-
-    import {
-        getUserProfile
-    } from "/src/firebase/firestore.js";
+    const passwordToggle =
+        document.getElementById("passwordToggle");
 
 
+    passwordToggle.addEventListener(
+        "click",
+        function () {
 
-    const form =
+            if (
+                passwordInput.type === "password"
+            ) {
+
+                passwordInput.type = "text";
+
+                passwordToggle.textContent = "🙈";
+
+            } else {
+
+                passwordInput.type = "password";
+
+                passwordToggle.textContent = "👁️";
+
+            }
+
+        }
+    );
+
+
+    const loginForm =
         document.getElementById("loginForm");
 
 
-    const loginButton =
-        document.getElementById("loginButton");
-
-
-    const googleButton =
-        document.getElementById("googleLoginButton");
-
-
-    const message =
-        document.getElementById("loginMessage");
-
-
-
-    /*
-     * تحويل المستخدم حسب بيانات حسابه
-     *
-     * مؤقتًا سنستخدمها لحد ما نعمل
-     * Auth Guard المركزي.
-     */
-
-    async function redirectUser(user) {
-
-        const profile =
-            await getUserProfile(user.uid);
-
-
-        if (!profile) {
-
-            message.textContent =
-                "تم تسجيل الدخول ولكن بيانات الحساب غير موجودة.";
-
-            return;
-
-        }
-
-
-        if (profile.role === "admin") {
-
-            window.location.href =
-                "/admin/dashboard.html";
-
-            return;
-
-        }
-
-
-        if (profile.role === "teacher") {
-
-            window.location.href =
-                "/teacher/dashboard.html";
-
-            return;
-
-        }
-
-
-        if (profile.role === "student") {
-
-            window.location.href =
-                "/student/dashboard.html";
-
-            return;
-
-        }
-
-
-        message.textContent =
-            "نوع الحساب غير معروف.";
-
-    }
-
-
-
-    /*
-     * Email / Password Login
-     */
-
-    form.addEventListener(
+    loginForm.addEventListener(
         "submit",
-        async (event) => {
+        function (event) {
 
             event.preventDefault();
 
-
-            const email =
-                document
-                    .getElementById("email")
-                    .value
-                    .trim();
-
-
-            const password =
-                document
-                    .getElementById("password")
-                    .value;
-
-
-            if (!email || !password) {
-
-                message.textContent =
-                    "من فضلك أدخل البريد الإلكتروني وكلمة المرور.";
-
-                return;
-
-            }
-
-
-            loginButton.disabled = true;
-
-            googleButton.disabled = true;
-
-
-            message.textContent =
-                "جاري تسجيل الدخول...";
-
-
-            try {
-
-                const user =
-                    await loginUser(
-                        email,
-                        password
-                    );
-
-
-                await redirectUser(user);
-
-
-            } catch (error) {
-
-                console.error(error);
-
-
-                message.textContent =
-                    getAuthErrorMessage(error);
-
-            }
-
-
-            loginButton.disabled = false;
-
-            googleButton.disabled = false;
+            alert(
+                "صفحة تسجيل الدخول جاهزة. سيتم ربطها بـ Firebase في الخطوة التالية."
+            );
 
         }
     );
 
 
+    document
+        .getElementById("googleLogin")
+        .addEventListener(
+            "click",
+            function () {
 
-    /*
-     * Google Login
-     */
-
-    googleButton.addEventListener(
-        "click",
-        async () => {
-
-            loginButton.disabled = true;
-
-            googleButton.disabled = true;
-
-
-            message.textContent =
-                "جاري فتح تسجيل الدخول باستخدام Google...";
-
-
-            try {
-
-                const user =
-                    await loginWithGoogle();
-
-
-                await redirectUser(user);
-
-
-            } catch (error) {
-
-                console.error(error);
-
-
-                message.textContent =
-                    getAuthErrorMessage(error);
+                alert(
+                    "Google Login سيتم ربطه بـ Firebase في الخطوة التالية."
+                );
 
             }
+        );
 
 
-            loginButton.disabled = false;
+    document
+        .getElementById("forgotPassword")
+        .addEventListener(
+            "click",
+            function () {
 
-            googleButton.disabled = false;
+                alert(
+                    "سيتم تفعيل استعادة كلمة المرور مع Firebase."
+                );
 
-        }
-    );
-
-
-
-    /*
-     * Firebase Error Messages
-     */
-
-    function getAuthErrorMessage(error) {
-
-        switch (error.code) {
-
-            case "auth/invalid-credential":
-                return "البريد الإلكتروني أو كلمة المرور غير صحيحة.";
-
-            case "auth/user-not-found":
-                return "لا يوجد حساب بهذا البريد الإلكتروني.";
-
-            case "auth/wrong-password":
-                return "كلمة المرور غير صحيحة.";
-
-            case "auth/invalid-email":
-                return "البريد الإلكتروني غير صحيح.";
-
-            case "auth/too-many-requests":
-                return "تم إجراء محاولات كثيرة. حاول مرة أخرى لاحقًا.";
-
-            case "auth/popup-closed-by-user":
-                return "تم إغلاق نافذة Google.";
-
-            case "auth/popup-blocked":
-                return "المتصفح منع نافذة تسجيل الدخول.";
-
-            case "auth/network-request-failed":
-                return "تأكد من اتصال الإنترنت وحاول مرة أخرى.";
-
-            default:
-                return "حدث خطأ أثناء تسجيل الدخول. حاول مرة أخرى.";
-
-        }
-
-    }
+            }
+        );
 
 </script>
-
-
-<!-- Main JavaScript / CSS -->
-
-<script
-    type="module"
-    src="/src/main.js"
-></script>
 
 </body></html>
