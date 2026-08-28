@@ -3,372 +3,398 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>بوابة التمريض | قريبًا</title>
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
 
-    <meta name="description"
-        content="بوابة التمريض تحت التطوير حاليًا. نعمل على تجهيز تجربة تعليمية أفضل لطلاب التمريض.">
+    <meta
+        name="description"
+        content="مسار التمريض — منصة تعليمية متخصصة لطلاب التمريض في مصر."
+    >
 
-    <style>
+    <meta
+        name="theme-color"
+        content="#0b2a43"
+    >
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+    <title>مسار التمريض | منصة تعليمية لطلاب التمريض</title>
 
-        body {
-            min-height: 100vh;
-            font-family: Arial, Tahoma, sans-serif;
-            background:
-                radial-gradient(circle at top right, rgba(14, 165, 233, 0.18), transparent 35%),
-                radial-gradient(circle at bottom left, rgba(30, 64, 175, 0.20), transparent 35%),
-                linear-gradient(135deg, #f8fbff, #eef6ff);
-
-            display: flex;
-            justify-content: center;
-            align-items: center;
-
-            color: #0f172a;
-
-            overflow: hidden;
-        }
-
-        /* خلفية بسيطة */
-
-        .background {
-            position: fixed;
-            inset: 0;
-            overflow: hidden;
-            pointer-events: none;
-            z-index: 0;
-        }
-
-        .circle {
-            position: absolute;
-            border-radius: 50%;
-            filter: blur(1px);
-            opacity: 0.25;
-        }
-
-        .circle.one {
-            width: 280px;
-            height: 280px;
-            background: #38bdf8;
-            top: -100px;
-            right: -80px;
-        }
-
-        .circle.two {
-            width: 220px;
-            height: 220px;
-            background: #2563eb;
-            bottom: -90px;
-            left: -60px;
-        }
-
-        /* الكارت */
-
-        .container {
-            position: relative;
-            z-index: 2;
-
-            width: min(92%, 650px);
-
-            background: rgba(255, 255, 255, 0.88);
-
-            border: 1px solid rgba(255, 255, 255, 0.8);
-
-            border-radius: 28px;
-
-            padding: 55px 35px;
-
-            text-align: center;
-
-            box-shadow:
-                0 25px 70px rgba(15, 23, 42, 0.12);
-
-            backdrop-filter: blur(12px);
-
-            animation: appear 0.8s ease;
-        }
-
-        /* اللوجو */
-
-        .logo {
-            width: 95px;
-            height: 95px;
-
-            margin: 0 auto 25px;
-
-            border-radius: 28px;
-
-            display: flex;
-            justify-content: center;
-            align-items: center;
-
-            font-size: 48px;
-
-            background: linear-gradient(
-                135deg,
-                #0f3c68,
-                #0ea5e9
-            );
-
-            box-shadow:
-                0 15px 35px rgba(14, 165, 233, 0.28);
-
-            animation: float 3s ease-in-out infinite;
-        }
-
-        /* العنوان */
-
-        h1 {
-            font-size: clamp(30px, 6vw, 46px);
-
-            color: #0f3c68;
-
-            margin-bottom: 14px;
-
-            font-weight: 800;
-        }
-
-        .subtitle {
-            font-size: clamp(19px, 4vw, 25px);
-
-            color: #0ea5e9;
-
-            font-weight: 700;
-
-            margin-bottom: 25px;
-        }
-
-        /* الرسالة */
-
-        .message {
-            font-size: 17px;
-
-            line-height: 1.9;
-
-            color: #475569;
-
-            max-width: 500px;
-
-            margin: auto;
-        }
-
-        .heart {
-            display: inline-block;
-
-            animation: heartbeat 1.5s infinite;
-        }
-
-        /* قريبًا */
-
-        .coming-soon {
-            margin: 30px auto 0;
-
-            display: inline-flex;
-
-            align-items: center;
-
-            gap: 10px;
-
-            padding: 13px 25px;
-
-            border-radius: 50px;
-
-            background: #eff6ff;
-
-            color: #0f3c68;
-
-            border: 1px solid #dbeafe;
-
-            font-size: 16px;
-
-            font-weight: 700;
-        }
-
-        .dot {
-            width: 9px;
-            height: 9px;
-
-            background: #0ea5e9;
-
-            border-radius: 50%;
-
-            animation: pulse 1.5s infinite;
-        }
-
-        /* الفوتر */
-
-        .footer {
-            margin-top: 35px;
-
-            color: #94a3b8;
-
-            font-size: 13px;
-        }
-
-        /* Animation */
-
-        @keyframes appear {
-
-            from {
-                opacity: 0;
-                transform: translateY(25px) scale(0.97);
-            }
-
-            to {
-                opacity: 1;
-                transform: translateY(0) scale(1);
-            }
-
-        }
-
-        @keyframes float {
-
-            0%, 100% {
-                transform: translateY(0);
-            }
-
-            50% {
-                transform: translateY(-8px);
-            }
-
-        }
-
-        @keyframes pulse {
-
-            0% {
-                transform: scale(1);
-                opacity: 1;
-            }
-
-            50% {
-                transform: scale(1.6);
-                opacity: 0.5;
-            }
-
-            100% {
-                transform: scale(1);
-                opacity: 1;
-            }
-
-        }
-
-        @keyframes heartbeat {
-
-            0%, 100% {
-                transform: scale(1);
-            }
-
-            25% {
-                transform: scale(1.15);
-            }
-
-            40% {
-                transform: scale(1);
-            }
-
-            60% {
-                transform: scale(1.12);
-            }
-
-        }
-
-        /* الموبايل */
-
-        @media (max-width: 600px) {
-
-            .container {
-                padding: 45px 22px;
-
-                border-radius: 24px;
-            }
-
-            .logo {
-                width: 82px;
-                height: 82px;
-
-                font-size: 40px;
-
-                border-radius: 24px;
-            }
-
-            .message {
-                font-size: 15px;
-            }
-
-            .coming-soon {
-                font-size: 14px;
-                padding: 11px 20px;
-            }
-
-        }
-
-    </style>
+    <link rel="stylesheet" href="/src/styles/main.css">
 </head>
-
 
 <body>
 
-    <div class="background">
+    <header class="site-header">
 
-        <div class="circle one"></div>
+        <div class="container header-inner">
 
-        <div class="circle two"></div>
+            <a href="/" class="brand">
+                <span class="brand-icon">🩺</span>
 
-    </div>
+                <span class="brand-text">
+                    مسار التمريض
+                </span>
+            </a>
 
+            <nav class="main-nav">
 
-    <main class="container">
+                <a href="#about">
+                    عن المنصة
+                </a>
 
-        <div class="logo">
-            🩺
-        </div>
+                <a href="#stages">
+                    المراحل
+                </a>
 
+                <a href="#teachers">
+                    المدرسون
+                </a>
 
-        <h1>
-            بوابة التمريض
-        </h1>
+            </nav>
 
+            <div class="header-actions">
 
-        <div class="subtitle">
-            🚧 المنصة تحت التطوير حاليًا
-        </div>
+                <a
+                    href="/login.html"
+                    class="btn btn-outline"
+                >
+                    تسجيل الدخول
+                </a>
 
+                <a
+                    href="/register.html"
+                    class="btn btn-primary"
+                >
+                    إنشاء حساب
+                </a>
 
-        <p class="message">
-
-            نعمل حاليًا على تجهيز وتطوير المنصة
-            لتقديم تجربة تعليمية أفضل وأقوى لطلاب التمريض.
-
-            <br>
-
-            نراكم قريبًا إن شاء الله
-            <span class="heart">❤️</span>
-
-        </p>
-
-
-        <div class="coming-soon">
-
-            <span class="dot"></span>
-
-            قريبًا... نعود إليكم بشكل جديد
-
-        </div>
-
-
-        <div class="footer">
-
-            © 2026 بوابة التمريض
+            </div>
 
         </div>
+
+    </header>
+
+
+    <main>
+
+        <!-- Hero -->
+
+        <section class="hero">
+
+            <div class="container hero-content">
+
+                <div class="hero-text">
+
+                    <span class="hero-badge">
+                        🩺 منصة تعليمية متخصصة في التمريض
+                    </span>
+
+                    <h1>
+                        طريقك الأفضل
+                        <br>
+                        <span>لتعلّم التمريض</span>
+                    </h1>
+
+                    <p>
+                        منصة تعليمية تجمع المحاضرات المباشرة،
+                        التسجيلات، الاختبارات، الجداول، متابعة
+                        المستوى والتفاعل التعليمي في مكان واحد.
+                    </p>
+
+                    <div class="hero-actions">
+
+                        <a
+                            href="/register.html"
+                            class="btn btn-primary btn-large"
+                        >
+                            ابدأ رحلتك
+                        </a>
+
+                        <a
+                            href="#about"
+                            class="btn btn-outline btn-large"
+                        >
+                            اكتشف المنصة
+                        </a>
+
+                    </div>
+
+                </div>
+
+
+                <div class="hero-card">
+
+                    <div class="hero-card-icon">
+                        🩺
+                    </div>
+
+                    <h2>
+                        تعليم التمريض
+                        <br>
+                        بشكل مختلف
+                    </h2>
+
+                    <p>
+                        Live Classes • Recordings • Exams
+                        • Progress • Leaderboard
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- About -->
+
+        <section
+            id="about"
+            class="section"
+        >
+
+            <div class="container">
+
+                <div class="section-heading">
+
+                    <span>
+                        لماذا مسار التمريض؟
+                    </span>
+
+                    <h2>
+                        كل ما يحتاجه طالب التمريض
+                        في مكان واحد
+                    </h2>
+
+                </div>
+
+
+                <div class="features-grid">
+
+                    <article class="feature-card">
+
+                        <div class="feature-icon">
+                            🔴
+                        </div>
+
+                        <h3>
+                            محاضرات Live
+                        </h3>
+
+                        <p>
+                            حضور المحاضرات مباشرة مع
+                            المدرسين والتفاعل أثناء الشرح.
+                        </p>
+
+                    </article>
+
+
+                    <article class="feature-card">
+
+                        <div class="feature-icon">
+                            🎥
+                        </div>
+
+                        <h3>
+                            التسجيلات
+                        </h3>
+
+                        <p>
+                            المحاضرات المباشرة يتم تسجيلها
+                            وإتاحتها للطلاب بعد اعتمادها.
+                        </p>
+
+                    </article>
+
+
+                    <article class="feature-card">
+
+                        <div class="feature-icon">
+                            📅
+                        </div>
+
+                        <h3>
+                            جدولك الأسبوعي
+                        </h3>
+
+                        <p>
+                            تعرف محاضراتك واختباراتك
+                            ومهامك القادمة بسهولة.
+                        </p>
+
+                    </article>
+
+
+                    <article class="feature-card">
+
+                        <div class="feature-icon">
+                            🏆
+                        </div>
+
+                        <h3>
+                            نظام الإنجازات
+                        </h3>
+
+                        <p>
+                            XP ومستويات وترتيب تنافسي
+                            لتحفيزك على الاستمرار.
+                        </p>
+
+                    </article>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- Stages -->
+
+        <section
+            id="stages"
+            class="section section-alt"
+        >
+
+            <div class="container">
+
+                <div class="section-heading">
+
+                    <span>
+                        المراحل التعليمية
+                    </span>
+
+                    <h2>
+                        مسارك يبدأ من هنا
+                    </h2>
+
+                </div>
+
+
+                <div class="stages-grid">
+
+                    <article class="stage-card">
+
+                        <span>🎓</span>
+
+                        <h3>
+                            أولى ثانوي تمريض
+                        </h3>
+
+                    </article>
+
+
+                    <article class="stage-card">
+
+                        <span>🎓</span>
+
+                        <h3>
+                            تانية ثانوي تمريض
+                        </h3>
+
+                    </article>
+
+
+                    <article class="stage-card">
+
+                        <span>🎓</span>
+
+                        <h3>
+                            تالتة ثانوي تمريض
+                        </h3>
+
+                    </article>
+
+
+                    <article class="stage-card">
+
+                        <span>🏥</span>
+
+                        <h3>
+                            أولى معهد تمريض
+                        </h3>
+
+                    </article>
+
+
+                    <article class="stage-card">
+
+                        <span>🏥</span>
+
+                        <h3>
+                            تانية معهد تمريض
+                        </h3>
+
+                    </article>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- Teachers -->
+
+        <section
+            id="teachers"
+            class="section"
+        >
+
+            <div class="container teacher-section">
+
+                <div class="section-heading">
+
+                    <span>
+                        نخبة من المدرسين
+                    </span>
+
+                    <h2>
+                        المدرس شريك في رحلتك التعليمية
+                    </h2>
+
+                    <p>
+                        نعمل على بناء شبكة من المدرسين
+                        وأصحاب الخبرة في مجال التمريض.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
 
     </main>
+
+
+    <footer class="site-footer">
+
+        <div class="container footer-inner">
+
+            <div>
+
+                <strong>
+                    🩺 مسار التمريض
+                </strong>
+
+                <p>
+                    منصة تعليمية متخصصة لطلاب التمريض.
+                </p>
+
+            </div>
+
+            <p>
+                © 2026 مسار التمريض
+            </p>
+
+        </div>
+
+    </footer>
+
+
+    <script type="module" src="/src/main.js"></script>
 
 </body>
 
