@@ -1,17 +1,15 @@
 import {
 createUserWithEmailAndPassword,
 signInWithEmailAndPassword,
-GoogleAuthProvider,
 signInWithPopup,
-sendPasswordResetEmail,
-signOut,
-onAuthStateChanged
+GoogleAuthProvider,
+sendPasswordResetEmail
 } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-auth.js";
 
 import {
 doc,
-setDoc,
 getDoc,
+setDoc,
 serverTimestamp
 } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
 
@@ -20,36 +18,38 @@ auth,
 db
 } from "./config.js";
 
-/* ================================
+/* =========================================
 Google Provider
-================================ */
+========================================= */
 
-const googleProvider = new GoogleAuthProvider();
+const googleProvider =
+new GoogleAuthProvider();
 
-googleProvider.setCustomParameters({
-prompt: "select_account"
-});
+/* =========================================
+إنشاء حساب Email
+========================================= */
 
-/* ================================
-إنشاء حساب بالبريد
-================================ */
-
-async function registerWithEmail(
+export async function registerWithEmail(
 email,
 password,
-userData
+userData = {}
 ) {
 
-const userCredential =
+const credential =
     await createUserWithEmailAndPassword(
         auth,
         email,
         password
     );
 
-const user =
-    userCredential.user;
 
+const user =
+    credential.user;
+
+
+/* =====================================
+   إنشاء users/{uid}
+===================================== */
 
 await setDoc(
     doc(db, "users", user.uid),
@@ -57,21 +57,38 @@ await setDoc(
 
         uid: user.uid,
 
-        name: userData.name,
+        name:
+            userData.name ||
+            user.displayName ||
+            "",
 
-        email: user.email,
+        email:
+            user.email || "",
 
-        stage: userData.stage,
+        stage:
+            userData.stage ||
+            "",
 
-        role: "student",
+        role:
+            "student",
 
-        accountStatus: "pending",
+        accountStatus:
+            "pending",
 
-        subscriptionStatus: "none",
+        subscriptionStatus:
+            "none",
 
-        createdAt: serverTimestamp(),
+        subscriptionStart:
+            null,
 
-        provider: "password"
+        subscriptionEnd:
+            null,
+
+        createdAt:
+            serverTimestamp(),
+
+        updatedAt:
+            serverTimestamp()
 
     }
 );
@@ -81,51 +98,63 @@ return user;
 
 }
 
-/* ================================
-تسجيل الدخول بالبريد
-================================ */
+/* =========================================
+تسجيل الدخول Email
+========================================= */
 
-async function loginWithEmail(
+export async function loginWithEmail(
 email,
 password
 ) {
 
-const userCredential =
+const credential =
     await signInWithEmailAndPassword(
         auth,
         email,
         password
     );
 
-return userCredential.user;
+
+return credential.user;
 
 }
 
-/* ================================
+/* =========================================
 تسجيل الدخول / التسجيل Google
-================================ */
+========================================= */
 
-async function loginWithGoogle(
-stage = ""
-) {
+export async function loginWithGoogle() {
 
-const result =
+const credential =
     await signInWithPopup(
         auth,
         googleProvider
     );
 
-const user =
-    result.user;
 
+const user =
+    credential.user;
+
+
+/* =====================================
+   التأكد هل users/{uid} موجودة
+===================================== */
 
 const userRef =
-    doc(db, "users", user.uid);
+    doc(
+        db,
+        "users",
+        user.uid
+    );
 
 
 const userSnapshot =
     await getDoc(userRef);
 
+
+/* =====================================
+   أول تسجيل Google
+===================================== */
 
 if (!userSnapshot.exists()) {
 
@@ -133,23 +162,40 @@ if (!userSnapshot.exists()) {
         userRef,
         {
 
-            uid: user.uid,
+            uid:
+                user.uid,
 
-            name: user.displayName || "",
+            name:
+                user.displayName ||
+                "",
 
-            email: user.email || "",
+            email:
+                user.email ||
+                "",
 
-            stage: stage,
+            stage:
+                "",
 
-            role: "student",
+            role:
+                "student",
 
-            accountStatus: "pending",
+            accountStatus:
+                "pending",
 
-            subscriptionStatus: "none",
+            subscriptionStatus:
+                "none",
 
-            createdAt: serverTimestamp(),
+            subscriptionStart:
+                null,
 
-            provider: "google"
+            subscriptionEnd:
+                null,
+
+            createdAt:
+                serverTimestamp(),
+
+            updatedAt:
+                serverTimestamp()
 
         }
     );
@@ -161,106 +207,65 @@ return user;
 
 }
 
-/* ================================
-استعادة كلمة المرور
-================================ */
+/* =========================================
+جلب بيانات المستخدم
+users/{uid}
+========================================= */
 
-async function resetPassword(
-email
-) {
-
-await sendPasswordResetEmail(
-    auth,
-    email
-);
-
-}
-
-/* ================================
-تسجيل الخروج
-================================ */
-
-async function logout() {
-
-await signOut(auth);
-
-}
-
-/* ================================
-متابعة حالة تسجيل الدخول
-================================ */
-
-function watchAuthState(
-callback
-) {
-
-return onAuthStateChanged(
-    auth,
-    callback
-);
-
-}
-
-/* ================================
-حفظ المرحلة لحساب Google
-================================ */
-
-async function saveGoogleStage(
-uid,
-stage
+export async function getUserProfile(
+uid
 ) {
 
 if (!uid) {
 
     throw new Error(
-        "User ID is required."
+        "User UID is required."
     );
 
 }
 
 
-if (!stage) {
-
-    throw new Error(
-        "Stage is required."
+const userRef =
+    doc(
+        db,
+        "users",
+        uid
     );
+
+
+const userSnapshot =
+    await getDoc(userRef);
+
+
+if (!userSnapshot.exists()) {
+
+    return null;
 
 }
 
 
-await setDoc(
-    doc(db, "users", uid),
-    {
+return {
 
-        stage: stage,
+    id:
+        userSnapshot.id,
 
-        role: "student",
+    ...userSnapshot.data()
 
-        accountStatus: "pending",
+};
 
-        subscriptionStatus: "none",
+}
 
-        provider: "google"
+/* =========================================
+إعادة تعيين كلمة المرور
+========================================= */
 
-    },
-    {
-        merge: true
-    }
+export async function resetPassword(
+email
+) {
+
+return await sendPasswordResetEmail(
+    auth,
+    email
 );
 
 }
-
-/* ================================
-تصدير الوظيفة
-================================ */
-
-export {
-registerWithEmail,
-loginWithEmail,
-loginWithGoogle,
-saveGoogleStage,
-resetPassword,
-logout,
-watchAuthState
-};
-
