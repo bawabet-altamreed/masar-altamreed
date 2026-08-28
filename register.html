@@ -103,6 +103,14 @@
                     aria-live="polite"
                 ></div>
 
+               <button
+    type="button"
+    id="googleRegisterBtn"
+    class="google-btn"
+>
+    <span class="google-icon">G</span>
+    التسجيل باستخدام Google
+</button>
             </form>
 
 
@@ -120,41 +128,88 @@
 
     </main>
 
+<script type="module">
 
-    <script type="module">
+    import {
+        registerUser,
+        loginWithGoogle
+    } from "/src/firebase/auth.js";
 
-        import {
-            registerUser
-        } from "/src/firebase/auth.js";
+    import {
+        createUserProfile
+    } from "/src/firebase/firestore.js";
 
-        import {
-            createUserProfile
-        } from "/src/firebase/firestore.js";
-
-        import {
-            ROLES
-        } from "/src/core/roles.js";
-
-
-        const form =
-            document.getElementById("registerForm");
-
-        const message =
-            document.getElementById("registerMessage");
+    import {
+        ROLES
+    } from "/src/core/roles.js";
 
 
-        form.addEventListener("submit", async (event) => {
+    const form =
+        document.getElementById("registerForm");
+
+    const googleButton =
+        document.getElementById("googleRegisterBtn");
+
+    const message =
+        document.getElementById("registerMessage");
+
+
+    async function createStudentProfile(user) {
+
+        await createUserProfile(
+            user.uid,
+            {
+                name:
+                    user.displayName || "طالب جديد",
+
+                email:
+                    user.email,
+
+                role:
+                    ROLES.STUDENT,
+
+                status:
+                    "pending",
+
+                stageId:
+                    null,
+
+                gradeId:
+                    null,
+
+                subscriptionStatus:
+                    "inactive"
+            }
+        );
+
+    }
+
+
+    form.addEventListener(
+        "submit",
+        async (event) => {
 
             event.preventDefault();
 
+
             const name =
-                document.getElementById("name").value.trim();
+                document
+                    .getElementById("name")
+                    .value
+                    .trim();
+
 
             const email =
-                document.getElementById("email").value.trim();
+                document
+                    .getElementById("email")
+                    .value
+                    .trim();
+
 
             const password =
-                document.getElementById("password").value;
+                document
+                    .getElementById("password")
+                    .value;
 
 
             message.textContent =
@@ -171,22 +226,11 @@
                     );
 
 
-                await createUserProfile(
-                    user.uid,
-                    {
-                        name,
-                        email,
-                        role: ROLES.STUDENT,
-                        status: "pending",
-                        stageId: null,
-                        gradeId: null,
-                        subscriptionStatus: "inactive"
-                    }
-                );
+                await createStudentProfile(user);
 
 
                 message.textContent =
-                    "تم إنشاء الحساب بنجاح. سيتم تحويلك...";
+                    "تم إنشاء الحساب بنجاح.";
 
 
                 setTimeout(() => {
@@ -201,31 +245,86 @@
 
                 console.error(error);
 
-                let text =
-                    "حدث خطأ أثناء إنشاء الحساب.";
+                message.textContent =
+                    getAuthErrorMessage(error);
 
-                if (error.code === "auth/email-already-in-use") {
-                    text =
-                        "البريد الإلكتروني مستخدم بالفعل.";
-                }
-
-                if (error.code === "auth/invalid-email") {
-                    text =
-                        "البريد الإلكتروني غير صحيح.";
-                }
-
-                if (error.code === "auth/weak-password") {
-                    text =
-                        "كلمة المرور ضعيفة.";
-                }
-
-                message.textContent = text;
             }
 
-        });
+        }
+    );
 
-    </script>
 
+    googleButton.addEventListener(
+        "click",
+        async () => {
+
+            message.textContent =
+                "جاري تسجيل الدخول باستخدام Google...";
+
+
+            try {
+
+                const user =
+                    await loginWithGoogle();
+
+
+                await createStudentProfile(user);
+
+
+                message.textContent =
+                    "تم إنشاء الحساب بنجاح.";
+
+
+                setTimeout(() => {
+
+                    window.location.href =
+                        "/student/dashboard.html";
+
+                }, 1000);
+
+
+            } catch (error) {
+
+                console.error(error);
+
+                message.textContent =
+                    getAuthErrorMessage(error);
+
+            }
+
+        }
+    );
+
+
+    function getAuthErrorMessage(error) {
+
+        switch (error.code) {
+
+            case "auth/email-already-in-use":
+                return "البريد الإلكتروني مستخدم بالفعل.";
+
+            case "auth/invalid-email":
+                return "البريد الإلكتروني غير صحيح.";
+
+            case "auth/weak-password":
+                return "كلمة المرور يجب أن تكون أقوى.";
+
+            case "auth/popup-closed-by-user":
+                return "تم إغلاق نافذة Google.";
+
+            case "auth/popup-blocked":
+                return "المتصفح منع نافذة تسجيل الدخول.";
+
+            default:
+                return "حدث خطأ. حاول مرة أخرى.";
+
+        }
+
+    }
+
+</script>
+
+            
 </body>
 
 </html>
