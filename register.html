@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>إنشاء حساب | مسار التمريض</title>
+
+    <link rel="stylesheet" href="/src/styles/main.css">
+</head>
+
+<body>
+
+    <main class="auth-page">
+
+        <section class="auth-card">
+
+            <div class="auth-header">
+
+                <div class="brand-icon">
+                    🩺
+                </div>
+
+                <h1>
+                    إنشاء حساب
+                </h1>
+
+                <p>
+                    ابدأ رحلتك التعليمية مع مسار التمريض
+                </p>
+
+            </div>
+
+            <form id="registerForm">
+
+                <div class="form-group">
+
+                    <label for="name">
+                        الاسم بالكامل
+                    </label>
+
+                    <input
+                        id="name"
+                        type="text"
+                        required
+                        autocomplete="name"
+                        placeholder="اكتب اسمك بالكامل"
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="email">
+                        البريد الإلكتروني
+                    </label>
+
+                    <input
+                        id="email"
+                        type="email"
+                        required
+                        autocomplete="email"
+                        placeholder="example@email.com"
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="password">
+                        كلمة المرور
+                    </label>
+
+                    <input
+                        id="password"
+                        type="password"
+                        required
+                        minlength="6"
+                        autocomplete="new-password"
+                        placeholder="••••••••"
+                    >
+
+                </div>
+
+
+                <button
+                    type="submit"
+                    class="btn btn-primary btn-large auth-submit"
+                >
+                    إنشاء الحساب
+                </button>
+
+                <div
+                    id="registerMessage"
+                    class="auth-message"
+                    aria-live="polite"
+                ></div>
+
+            </form>
+
+
+            <div class="auth-footer">
+
+                لديك حساب بالفعل؟
+
+                <a href="/login.html">
+                    تسجيل الدخول
+                </a>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <script type="module">
+
+        import {
+            registerUser
+        } from "/src/firebase/auth.js";
+
+        import {
+            createUserProfile
+        } from "/src/firebase/firestore.js";
+
+        import {
+            ROLES
+        } from "/src/core/roles.js";
+
+
+        const form =
+            document.getElementById("registerForm");
+
+        const message =
+            document.getElementById("registerMessage");
+
+
+        form.addEventListener("submit", async (event) => {
+
+            event.preventDefault();
+
+            const name =
+                document.getElementById("name").value.trim();
+
+            const email =
+                document.getElementById("email").value.trim();
+
+            const password =
+                document.getElementById("password").value;
+
+
+            message.textContent =
+                "جاري إنشاء الحساب...";
+
+
+            try {
+
+                const user =
+                    await registerUser(
+                        email,
+                        password,
+                        name
+                    );
+
+
+                await createUserProfile(
+                    user.uid,
+                    {
+                        name,
+                        email,
+                        role: ROLES.STUDENT,
+                        status: "pending",
+                        stageId: null,
+                        gradeId: null,
+                        subscriptionStatus: "inactive"
+                    }
+                );
+
+
+                message.textContent =
+                    "تم إنشاء الحساب بنجاح. سيتم تحويلك...";
+
+
+                setTimeout(() => {
+
+                    window.location.href =
+                        "/student/dashboard.html";
+
+                }, 1000);
+
+
+            } catch (error) {
+
+                console.error(error);
+
+                let text =
+                    "حدث خطأ أثناء إنشاء الحساب.";
+
+                if (error.code === "auth/email-already-in-use") {
+                    text =
+                        "البريد الإلكتروني مستخدم بالفعل.";
+                }
+
+                if (error.code === "auth/invalid-email") {
+                    text =
+                        "البريد الإلكتروني غير صحيح.";
+                }
+
+                if (error.code === "auth/weak-password") {
+                    text =
+                        "كلمة المرور ضعيفة.";
+                }
+
+                message.textContent = text;
+            }
+
+        });
+
+    </script>
+
+</body>
+
+</html>
