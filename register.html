@@ -586,108 +586,371 @@
 
 
 
-<!-- مؤقتًا: وظائف الواجهة فقط -->
+<script type="module">
 
-<script>
-
-    function setupPasswordToggle(
-        inputId,
-        buttonId
-    ) {
-
-        const input =
-            document.getElementById(inputId);
-
-        const button =
-            document.getElementById(buttonId);
+import {
+    registerWithEmail,
+    loginWithGoogle
+} from "./src/firebase/auth.js";
 
 
-        button.addEventListener(
-            "click",
-            function () {
+const registerForm =
+    document.getElementById("registerForm");
 
-                if (input.type === "password") {
+const googleRegister =
+    document.getElementById("googleRegister");
 
-                    input.type = "text";
+const authMessage =
+    document.getElementById("authMessage");
 
-                    button.textContent = "🙈";
 
-                } else {
+/* ================================
+   إظهار الرسائل
+================================ */
 
-                    input.type = "password";
+function showMessage(
+    message,
+    type = "error"
+) {
 
-                    button.textContent = "👁️";
+    authMessage.textContent = message;
 
-                }
+    authMessage.className =
+        "auth-message " + type;
+
+}
+
+
+/* ================================
+   إظهار / إخفاء كلمة المرور
+================================ */
+
+function setupPasswordToggle(
+    inputId,
+    buttonId
+) {
+
+    const input =
+        document.getElementById(inputId);
+
+    const button =
+        document.getElementById(buttonId);
+
+
+    button.addEventListener(
+        "click",
+        function () {
+
+            if (input.type === "password") {
+
+                input.type = "text";
+
+                button.textContent = "🙈";
+
+            } else {
+
+                input.type = "password";
+
+                button.textContent = "👁️";
 
             }
-        );
+
+        }
+    );
+
+}
+
+
+setupPasswordToggle(
+    "password",
+    "passwordToggle"
+);
+
+setupPasswordToggle(
+    "confirmPassword",
+    "confirmPasswordToggle"
+);
+
+
+/* ================================
+   إنشاء حساب Email
+================================ */
+
+registerForm.addEventListener(
+    "submit",
+    async function (event) {
+
+        event.preventDefault();
+
+
+        const firstName =
+            document
+                .getElementById("firstName")
+                .value
+                .trim();
+
+
+        const lastName =
+            document
+                .getElementById("lastName")
+                .value
+                .trim();
+
+
+        const email =
+            document
+                .getElementById("email")
+                .value
+                .trim();
+
+
+        const stage =
+            document
+                .getElementById("stage")
+                .value;
+
+
+        const password =
+            document
+                .getElementById("password")
+                .value;
+
+
+        const confirmPassword =
+            document
+                .getElementById("confirmPassword")
+                .value;
+
+
+        /* ============================
+           التحقق من البيانات
+        ============================ */
+
+        if (!firstName || !lastName) {
+
+            showMessage(
+                "من فضلك اكتب اسمك بالكامل."
+            );
+
+            return;
+
+        }
+
+
+        if (!stage) {
+
+            showMessage(
+                "من فضلك اختر المرحلة الدراسية."
+            );
+
+            return;
+
+        }
+
+
+        if (password.length < 6) {
+
+            showMessage(
+                "كلمة المرور يجب أن تكون 6 أحرف على الأقل."
+            );
+
+            return;
+
+        }
+
+
+        if (password !== confirmPassword) {
+
+            showMessage(
+                "كلمتا المرور غير متطابقتين."
+            );
+
+            return;
+
+        }
+
+
+        try {
+
+            const fullName =
+                `${firstName} ${lastName}`;
+
+
+            const button =
+                registerForm.querySelector(
+                    'button[type="submit"]'
+                );
+
+
+            button.disabled = true;
+
+            button.textContent =
+                "جاري إنشاء الحساب...";
+
+
+            await registerWithEmail(
+                email,
+                password,
+                {
+                    name: fullName,
+                    stage: stage
+                }
+            );
+
+
+            showMessage(
+                "تم إنشاء حسابك بنجاح. حسابك الآن قيد مراجعة الإدارة.",
+                "success"
+            );
+
+
+            registerForm.reset();
+
+
+            button.disabled = false;
+
+            button.textContent =
+                "إنشاء الحساب";
+
+
+        } catch (error) {
+
+            console.error(error);
+
+
+            let message =
+                "حدث خطأ أثناء إنشاء الحساب.";
+
+
+            if (
+                error.code ===
+                "auth/email-already-in-use"
+            ) {
+
+                message =
+                    "هذا البريد الإلكتروني مستخدم بالفعل.";
+
+            }
+
+
+            else if (
+                error.code ===
+                "auth/invalid-email"
+            ) {
+
+                message =
+                    "البريد الإلكتروني غير صحيح.";
+
+            }
+
+
+            else if (
+                error.code ===
+                "auth/weak-password"
+            ) {
+
+                message =
+                    "كلمة المرور ضعيفة. استخدم كلمة مرور أقوى.";
+
+            }
+
+
+            showMessage(message);
+
+
+            const button =
+                registerForm.querySelector(
+                    'button[type="submit"]'
+                );
+
+
+            button.disabled = false;
+
+            button.textContent =
+                "إنشاء الحساب";
+
+        }
 
     }
+);
 
 
-    setupPasswordToggle(
-        "password",
-        "passwordToggle"
-    );
+/* ================================
+   التسجيل باستخدام Google
+================================ */
+
+googleRegister.addEventListener(
+    "click",
+    async function () {
+
+        try {
+
+            googleRegister.disabled = true;
+
+            googleRegister.innerHTML =
+                "جاري المتابعة باستخدام Google...";
 
 
-    setupPasswordToggle(
-        "confirmPassword",
-        "confirmPasswordToggle"
-    );
+            await loginWithGoogle();
 
 
-
-    document
-        .getElementById("registerForm")
-        .addEventListener(
-            "submit",
-            function (event) {
-
-                event.preventDefault();
+            showMessage(
+                "تم إنشاء حسابك. سيتم تحديد المرحلة الدراسية ثم انتظار موافقة الإدارة.",
+                "success"
+            );
 
 
-                const password =
-                    document.getElementById("password").value;
+            googleRegister.disabled = false;
 
-                const confirmPassword =
-                    document.getElementById("confirmPassword").value;
-
-
-                if (password !== confirmPassword) {
-
-                    alert(
-                        "كلمتا المرور غير متطابقتين."
-                    );
-
-                    return;
-
-                }
+            googleRegister.innerHTML =
+                '<span class="google-icon">G</span><span>التسجيل باستخدام Google</span>';
 
 
-                alert(
-                    "صفحة إنشاء الحساب جاهزة. سيتم ربطها بـ Firebase في الخطوة التالية."
-                );
+        } catch (error) {
 
-            }
-        );
+            console.error(error);
 
 
+            let message =
+                "تعذر التسجيل باستخدام Google.";
 
-    document
-        .getElementById("googleRegister")
-        .addEventListener(
-            "click",
-            function () {
 
-                alert(
-                    "Google Login سيتم ربطه بـ Firebase في الخطوة التالية."
-                );
+            if (
+                error.code ===
+                "auth/popup-closed-by-user"
+            ) {
+
+                message =
+                    "تم إغلاق نافذة Google قبل إكمال التسجيل.";
 
             }
-        );
+
+
+            if (
+                error.code ===
+                "auth/popup-blocked"
+            ) {
+
+                message =
+                    "المتصفح منع نافذة Google. اسمح بالنوافذ المنبثقة وحاول مرة أخرى.";
+
+            }
+
+
+            showMessage(message);
+
+
+            googleRegister.disabled = false;
+
+            googleRegister.innerHTML =
+                '<span class="google-icon">G</span><span>التسجيل باستخدام Google</span>';
+
+        }
+
+    }
+);
 
 </script>
+
 
 </body></html>
