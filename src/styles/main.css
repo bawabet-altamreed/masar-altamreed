@@ -562,3 +562,57 @@ a {
 
     font-weight: 700;
 }
+.google-btn {
+    width: 100%;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 10px;
+
+    padding: 13px 18px;
+
+    margin-top: 12px;
+
+    background: #ffffff;
+
+    color: #202124;
+
+    border: 1px solid #dadce0;
+
+    border-radius: 12px;
+
+    font-size: 0.95rem;
+
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition: 0.2s ease;
+}
+
+.google-btn:hover {
+    background: #f8f9fa;
+
+    box-shadow:
+        0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.google-icon {
+    width: 24px;
+    height: 24px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    font-weight: 800;
+
+    font-size: 1rem;
+}
