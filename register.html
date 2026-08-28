@@ -19,560 +19,296 @@
 
 <link rel="stylesheet" href="styles/main.css">
 
-
 <style>
 
     .auth-page {
-
         min-height: calc(100vh - 76px);
-
         display: flex;
-
         align-items: center;
-
         justify-content: center;
-
         padding: 50px 20px;
-
         background: var(--background);
-
     }
-
 
     .auth-card {
-
         width: min(100%, 500px);
-
         background: var(--white);
-
         border: 1px solid var(--border);
-
         border-radius: 24px;
-
         padding: 35px;
-
         box-shadow: var(--shadow);
-
     }
-
 
     .auth-logo {
-
         width: 70px;
-
         height: 70px;
-
         margin: 0 auto 18px;
-
         display: flex;
-
         align-items: center;
-
         justify-content: center;
-
         background: var(--accent-light);
-
         border-radius: 20px;
-
         font-size: 36px;
-
     }
-
 
     .auth-heading {
-
         text-align: center;
-
         margin-bottom: 28px;
-
     }
-
 
     .auth-heading h1 {
-
         color: var(--primary);
-
         font-size: 30px;
-
         margin-bottom: 8px;
-
     }
-
 
     .auth-heading p {
-
         color: var(--text-light);
-
         font-size: 14px;
-
+        line-height: 1.7;
     }
-
 
     .auth-form {
-
         display: flex;
-
         flex-direction: column;
-
         gap: 15px;
-
     }
-
 
     .form-row {
-
         display: grid;
-
         grid-template-columns: 1fr 1fr;
-
         gap: 12px;
-
     }
-
 
     .form-group {
-
         display: flex;
-
         flex-direction: column;
-
         gap: 7px;
-
     }
-
 
     .form-group label {
-
         color: var(--primary);
-
         font-size: 14px;
-
         font-weight: 700;
-
     }
 
-
     .form-group input,
-    .form-group select {
-
+    .form-group select,
+    .google-stage-box select {
         width: 100%;
-
         min-height: 50px;
-
         padding: 10px 14px;
-
         border: 1px solid var(--border);
-
         border-radius: 11px;
-
         outline: none;
-
         background: #fff;
-
         color: var(--text);
-
         transition:
             border-color 0.2s ease,
             box-shadow 0.2s ease;
-
     }
-
 
     .form-group input:focus,
-    .form-group select:focus {
-
+    .form-group select:focus,
+    .google-stage-box select:focus {
         border-color: var(--accent);
-
         box-shadow:
             0 0 0 3px rgba(24, 166, 200, 0.1);
-
     }
-
 
     .password-wrapper {
-
         position: relative;
-
     }
-
 
     .password-wrapper input {
-
         padding-left: 55px;
-
     }
-
 
     .password-toggle {
-
         position: absolute;
-
         left: 10px;
-
         top: 50%;
-
         transform: translateY(-50%);
-
         border: none;
-
         background: transparent;
-
         cursor: pointer;
-
         font-size: 18px;
-
         padding: 5px;
-
     }
-
 
     .terms {
-
         display: flex;
-
         align-items: flex-start;
-
         gap: 9px;
-
         margin-top: 2px;
-
         color: var(--text-light);
-
         font-size: 12px;
-
         line-height: 1.7;
-
     }
-
 
     .terms input {
-
         margin-top: 5px;
-
         accent-color: var(--accent);
-
     }
-
-
-    .terms a {
-
-        color: var(--accent);
-
-        font-weight: 700;
-
-    }
-
 
     .auth-submit {
-
         width: 100%;
-
         border: none;
-
         margin-top: 4px;
-
     }
-
 
     .divider {
-
         display: flex;
-
         align-items: center;
-
         gap: 12px;
-
         margin: 22px 0;
-
         color: var(--text-light);
-
         font-size: 13px;
-
     }
-
 
     .divider::before,
     .divider::after {
-
         content: "";
-
         flex: 1;
-
         height: 1px;
-
         background: var(--border);
-
     }
-
 
     .google-btn {
-
         width: 100%;
-
         min-height: 50px;
-
         display: flex;
-
         align-items: center;
-
         justify-content: center;
-
         gap: 10px;
-
         border: 1px solid var(--border);
-
         border-radius: 11px;
-
         background: #fff;
-
         color: var(--text);
-
         font-weight: 700;
-
         cursor: pointer;
-
         transition: 0.2s ease;
-
     }
-
 
     .google-btn:hover {
-
         border-color: var(--accent);
-
         background: var(--accent-light);
-
     }
-
 
     .google-btn:disabled {
-
         opacity: 0.7;
-
         cursor: not-allowed;
-
     }
-
 
     .google-icon {
-
         font-size: 20px;
-
         font-weight: 900;
-
     }
-
 
     .auth-message {
-
         display: none;
-
         margin-top: 16px;
-
         padding: 12px 14px;
-
         border-radius: 10px;
-
         text-align: center;
-
         font-size: 13px;
-
-        line-height: 1.7;
-
+        line-height: 1.8;
     }
-
 
     .auth-message.error {
-
         display: block;
-
         background: #fff0f0;
-
         color: #b42318;
-
     }
 
+    .auth-message.warning {
+        display: block;
+        background: #fff8e7;
+        color: #9a6700;
+    }
 
     .auth-message.success {
-
         display: block;
-
         background: #ecfdf3;
-
         color: #067647;
-
     }
-
-
-    /* ================================
-       Google Stage Box
-    ================================ */
 
     .google-stage-box {
-
         display: none;
-
         margin-top: 20px;
-
         padding: 22px;
-
         border: 1px solid var(--border);
-
         border-radius: 16px;
-
         background: #f8fbfd;
-
     }
-
 
     .google-stage-box h3 {
-
         color: var(--primary);
-
         margin-bottom: 8px;
-
         font-size: 19px;
-
     }
-
 
     .google-stage-box p {
-
         color: var(--text-light);
-
         font-size: 13px;
-
         line-height: 1.7;
-
         margin-bottom: 15px;
-
     }
-
-
-    .google-stage-box select {
-
-        width: 100%;
-
-        min-height: 50px;
-
-        padding: 10px 14px;
-
-        border: 1px solid var(--border);
-
-        border-radius: 11px;
-
-        background: #fff;
-
-        color: var(--text);
-
-        outline: none;
-
-    }
-
-
-    .google-stage-box select:focus {
-
-        border-color: var(--accent);
-
-        box-shadow:
-            0 0 0 3px rgba(24, 166, 200, 0.1);
-
-    }
-
 
     .save-google-stage {
-
         width: 100%;
-
         border: none;
-
         margin-top: 14px;
-
     }
-
 
     .login-link {
-
         margin-top: 24px;
-
         text-align: center;
-
         color: var(--text-light);
-
         font-size: 14px;
-
     }
-
 
     .login-link a {
-
         color: var(--accent);
-
         font-weight: 800;
-
     }
-
 
     .back-home {
-
         display: block;
-
         margin-top: 18px;
-
         text-align: center;
-
         color: var(--text-light);
-
         font-size: 13px;
-
     }
-
 
     .back-home:hover {
-
         color: var(--accent);
-
     }
-
 
     @media (max-width: 600px) {
 
         .auth-page {
-
             padding: 30px 12px;
-
         }
-
 
         .auth-card {
-
             padding: 26px 20px;
-
             border-radius: 20px;
-
         }
-
 
         .auth-heading h1 {
-
             font-size: 26px;
-
         }
 
-
         .form-row {
-
             grid-template-columns: 1fr;
-
         }
 
     }
 
 </style>
 
-</head><body><!-- ================================
-     HEADER
-================================ --><header class="site-header"><div class="container header-inner">
+</head><body><header class="site-header"><div class="container header-inner">
 
     <a
         href="index.html"
@@ -603,9 +339,7 @@
 
 </div>
 
-</header><!-- ================================
-     REGISTER
-================================ --><main class="auth-page"><div class="auth-card">
+</header><main class="auth-page"><div class="auth-card">
 
 
     <div class="auth-logo">
@@ -626,10 +360,6 @@
     </div>
 
 
-
-    <!-- ============================
-         EMAIL REGISTER FORM
-    ============================= -->
 
     <form
         id="registerForm"
@@ -656,7 +386,6 @@
                 >
 
             </div>
-
 
 
             <div class="form-group">
@@ -815,8 +544,7 @@
             >
 
             <span>
-                أوافق على شروط استخدام المنصة
-                وسياسة الخصوصية.
+                أوافق على شروط استخدام المنصة وسياسة الخصوصية.
             </span>
 
         </label>
@@ -835,19 +563,11 @@
 
 
 
-    <!-- ============================
-         DIVIDER
-    ============================= -->
-
     <div class="divider">
         أو
     </div>
 
 
-
-    <!-- ============================
-         GOOGLE REGISTER
-    ============================= -->
 
     <button
         type="button"
@@ -867,10 +587,6 @@
 
 
 
-    <!-- ============================
-         GOOGLE STAGE
-    ============================= -->
-
     <div
         id="googleStageBox"
         class="google-stage-box"
@@ -880,16 +596,12 @@
             اختر مرحلتك الدراسية
         </h3>
 
-
         <p>
-            اختر المرحلة التي تدرس بها حاليًا
-            لإكمال إنشاء حسابك.
+            اختر المرحلة التي تدرس بها حاليًا لإكمال إنشاء حسابك.
         </p>
 
 
-        <select
-            id="googleStage"
-        >
+        <select id="googleStage">
 
             <option value="">
                 اختر المرحلة الدراسية
@@ -930,20 +642,12 @@
 
 
 
-    <!-- ============================
-         AUTH MESSAGE
-    ============================= -->
-
     <div
         id="authMessage"
         class="auth-message"
     ></div>
 
 
-
-    <!-- ============================
-         LOGIN LINK
-    ============================= -->
 
     <div class="login-link">
 
@@ -967,10 +671,7 @@
 
 </div>
 
-</main><!-- ================================
-     FIREBASE AUTH
-================================ --><script type="module">
-
+</main><script type="module">
 
 import {
     registerWithEmail,
@@ -979,63 +680,32 @@ import {
 } from "./src/firebase/auth.js";
 
 
-
-/* ================================
-   Elements
-================================ */
-
 const registerForm =
-    document.getElementById(
-        "registerForm"
-    );
-
+    document.getElementById("registerForm");
 
 const googleRegister =
-    document.getElementById(
-        "googleRegister"
-    );
-
+    document.getElementById("googleRegister");
 
 const authMessage =
-    document.getElementById(
-        "authMessage"
-    );
-
+    document.getElementById("authMessage");
 
 const googleStageBox =
-    document.getElementById(
-        "googleStageBox"
-    );
-
+    document.getElementById("googleStageBox");
 
 const googleStage =
-    document.getElementById(
-        "googleStage"
-    );
-
+    document.getElementById("googleStage");
 
 const saveGoogleStageButton =
-    document.getElementById(
-        "saveGoogleStage"
-    );
+    document.getElementById("saveGoogleStage");
 
 
 let googleUser = null;
 
 
 
-/* ================================
-   Show Message
-================================ */
+function showMessage(message, type = "error") {
 
-function showMessage(
-    message,
-    type = "error"
-) {
-
-    authMessage.textContent =
-        message;
-
+    authMessage.textContent = message;
 
     authMessage.className =
         "auth-message " + type;
@@ -1044,31 +714,17 @@ function showMessage(
 
 
 
-/* ================================
-   Password Toggle
-================================ */
-
-function setupPasswordToggle(
-    inputId,
-    buttonId
-) {
+function setupPasswordToggle(inputId, buttonId) {
 
     const input =
-        document.getElementById(
-            inputId
-        );
-
+        document.getElementById(inputId);
 
     const button =
-        document.getElementById(
-            buttonId
-        );
+        document.getElementById(buttonId);
 
 
     if (!input || !button) {
-
         return;
-
     }
 
 
@@ -1076,26 +732,17 @@ function setupPasswordToggle(
         "click",
         function () {
 
-            if (
-                input.type ===
-                "password"
-            ) {
+            if (input.type === "password") {
 
-                input.type =
-                    "text";
+                input.type = "text";
 
-                button.textContent =
-                    "🙈";
+                button.textContent = "🙈";
 
-            }
+            } else {
 
-            else {
+                input.type = "password";
 
-                input.type =
-                    "password";
-
-                button.textContent =
-                    "👁️";
+                button.textContent = "👁️";
 
             }
 
@@ -1103,7 +750,6 @@ function setupPasswordToggle(
     );
 
 }
-
 
 
 setupPasswordToggle(
@@ -1119,10 +765,6 @@ setupPasswordToggle(
 
 
 
-/* ================================
-   Email Registration
-================================ */
-
 registerForm.addEventListener(
     "submit",
     async function (event) {
@@ -1131,65 +773,30 @@ registerForm.addEventListener(
 
 
         const firstName =
-            document
-                .getElementById(
-                    "firstName"
-                )
-                .value
-                .trim();
+            document.getElementById("firstName").value.trim();
 
 
         const lastName =
-            document
-                .getElementById(
-                    "lastName"
-                )
-                .value
-                .trim();
+            document.getElementById("lastName").value.trim();
 
 
         const email =
-            document
-                .getElementById(
-                    "email"
-                )
-                .value
-                .trim();
+            document.getElementById("email").value.trim();
 
 
         const stage =
-            document
-                .getElementById(
-                    "stage"
-                )
-                .value;
+            document.getElementById("stage").value;
 
 
         const password =
-            document
-                .getElementById(
-                    "password"
-                )
-                .value;
+            document.getElementById("password").value;
 
 
         const confirmPassword =
-            document
-                .getElementById(
-                    "confirmPassword"
-                )
-                .value;
+            document.getElementById("confirmPassword").value;
 
 
-
-        /* ============================
-           Validation
-        ============================= */
-
-        if (
-            !firstName ||
-            !lastName
-        ) {
+        if (!firstName || !lastName) {
 
             showMessage(
                 "من فضلك اكتب اسمك بالكامل."
@@ -1211,9 +818,7 @@ registerForm.addEventListener(
         }
 
 
-        if (
-            password.length < 6
-        ) {
+        if (password.length < 6) {
 
             showMessage(
                 "كلمة المرور يجب أن تكون 6 أحرف على الأقل."
@@ -1224,10 +829,7 @@ registerForm.addEventListener(
         }
 
 
-        if (
-            password !==
-            confirmPassword
-        ) {
+        if (password !== confirmPassword) {
 
             showMessage(
                 "كلمتا المرور غير متطابقتين."
@@ -1238,26 +840,22 @@ registerForm.addEventListener(
         }
 
 
+        const button =
+            registerForm.querySelector(
+                'button[type="submit"]'
+            );
+
 
         try {
+
+            button.disabled = true;
+
+            button.textContent =
+                "جاري إنشاء الحساب...";
 
 
             const fullName =
                 `${firstName} ${lastName}`;
-
-
-            const button =
-                registerForm.querySelector(
-                    'button[type="submit"]'
-                );
-
-
-            button.disabled =
-                true;
-
-
-            button.textContent =
-                "جاري إنشاء الحساب...";
 
 
             await registerWithEmail(
@@ -1278,20 +876,9 @@ registerForm.addEventListener(
 
             registerForm.reset();
 
-
-            button.disabled =
-                false;
-
-
-            button.textContent =
-                "إنشاء الحساب";
-
-
         }
 
-
         catch (error) {
-
 
             console.error(error);
 
@@ -1310,7 +897,6 @@ registerForm.addEventListener(
 
             }
 
-
             else if (
                 error.code ===
                 "auth/invalid-email"
@@ -1320,7 +906,6 @@ registerForm.addEventListener(
                     "البريد الإلكتروني غير صحيح.";
 
             }
-
 
             else if (
                 error.code ===
@@ -1332,32 +917,24 @@ registerForm.addEventListener(
 
             }
 
-
             else if (
                 error.code ===
                 "auth/network-request-failed"
             ) {
 
                 message =
-                    "حدثت مشكلة في الاتصال بالإنترنت. حاول مرة أخرى.";
+                    "حدثت مشكلة في الاتصال بالإنترنت.";
 
             }
 
 
-            showMessage(
-                message
-            );
+            showMessage(message);
 
+        }
 
-            const button =
-                registerForm.querySelector(
-                    'button[type="submit"]'
-                );
+        finally {
 
-
-            button.disabled =
-                false;
-
+            button.disabled = false;
 
             button.textContent =
                 "إنشاء الحساب";
@@ -1369,20 +946,13 @@ registerForm.addEventListener(
 
 
 
-/* ================================
-   Google Registration
-================================ */
-
 googleRegister.addEventListener(
     "click",
     async function () {
 
         try {
 
-
-            googleRegister.disabled =
-                true;
-
+            googleRegister.disabled = true;
 
             googleRegister.innerHTML =
                 "جاري الاتصال بـ Google...";
@@ -1391,12 +961,6 @@ googleRegister.addEventListener(
             googleUser =
                 await loginWithGoogle();
 
-
-
-            /*
-             * بعد نجاح Google
-             * نظهر اختيار المرحلة
-             */
 
             googleStageBox.style.display =
                 "block";
@@ -1411,12 +975,9 @@ googleRegister.addEventListener(
                 "success"
             );
 
-
         }
 
-
         catch (error) {
-
 
             console.error(error);
 
@@ -1435,7 +996,6 @@ googleRegister.addEventListener(
 
             }
 
-
             else if (
                 error.code ===
                 "auth/popup-blocked"
@@ -1446,37 +1006,20 @@ googleRegister.addEventListener(
 
             }
 
-
-            else if (
-                error.code ===
-                "auth/account-exists-with-different-credential"
-            ) {
-
-                message =
-                    "هذا البريد مرتبط بالفعل بطريقة تسجيل دخول أخرى.";
-
-            }
-
-
             else if (
                 error.code ===
                 "auth/network-request-failed"
             ) {
 
                 message =
-                    "حدثت مشكلة في الاتصال بالإنترنت. حاول مرة أخرى.";
+                    "حدثت مشكلة في الاتصال بالإنترنت.";
 
             }
 
 
-            showMessage(
-                message
-            );
+            showMessage(message);
 
-
-            googleRegister.disabled =
-                false;
-
+            googleRegister.disabled = false;
 
             googleRegister.innerHTML =
                 '<span class="google-icon">G</span><span>التسجيل باستخدام Google</span>';
@@ -1488,14 +1031,9 @@ googleRegister.addEventListener(
 
 
 
-/* ================================
-   Save Google Stage
-================================ */
-
 saveGoogleStageButton.addEventListener(
     "click",
     async function () {
-
 
         if (!googleUser) {
 
@@ -1523,13 +1061,10 @@ saveGoogleStageButton.addEventListener(
         }
 
 
-
         try {
-
 
             saveGoogleStageButton.disabled =
                 true;
-
 
             saveGoogleStageButton.textContent =
                 "جاري حفظ البيانات...";
@@ -1551,39 +1086,33 @@ saveGoogleStageButton.addEventListener(
                 "none";
 
 
-            saveGoogleStageButton.disabled =
-                false;
-
-
             saveGoogleStageButton.textContent =
                 "تم التسجيل بنجاح";
 
-
         }
-
 
         catch (error) {
 
-
             console.error(error);
-
 
             showMessage(
                 "حدث خطأ أثناء حفظ المرحلة. حاول مرة أخرى."
             );
-
-
-            saveGoogleStageButton.disabled =
-                false;
-
 
             saveGoogleStageButton.textContent =
                 "متابعة";
 
         }
 
+        finally {
+
+            saveGoogleStageButton.disabled =
+                false;
+
+        }
+
     }
 );
 
-
-</script></body></html>
+</script></body>
+</html>
