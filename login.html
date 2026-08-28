@@ -19,515 +19,1372 @@
 
 <link rel="stylesheet" href="styles/main.css">
 
+
 <style>
 
     .auth-page {
+
         min-height: calc(100vh - 76px);
+
         display: flex;
+
         align-items: center;
+
         justify-content: center;
+
         padding: 50px 20px;
+
         background: var(--background);
+
     }
+
 
     .auth-card {
-        width: min(100%, 460px);
+
+        width: min(100%, 500px);
+
         background: var(--white);
+
         border: 1px solid var(--border);
+
         border-radius: 24px;
+
         padding: 35px;
+
         box-shadow: var(--shadow);
+
     }
+
 
     .auth-logo {
+
         width: 70px;
+
         height: 70px;
+
         margin: 0 auto 18px;
+
         display: flex;
+
         align-items: center;
+
         justify-content: center;
+
         background: var(--accent-light);
+
         border-radius: 20px;
+
         font-size: 36px;
+
     }
+
 
     .auth-heading {
+
         text-align: center;
+
         margin-bottom: 28px;
+
     }
+
 
     .auth-heading h1 {
+
         color: var(--primary);
+
         font-size: 30px;
+
         margin-bottom: 8px;
+
     }
+
 
     .auth-heading p {
+
         color: var(--text-light);
+
         font-size: 14px;
+
+        line-height: 1.7;
+
     }
+
 
     .auth-form {
+
         display: flex;
+
         flex-direction: column;
-        gap: 16px;
+
+        gap: 15px;
+
     }
+
 
     .form-group {
+
         display: flex;
+
         flex-direction: column;
+
         gap: 7px;
+
     }
+
 
     .form-group label {
+
         color: var(--primary);
+
         font-size: 14px;
+
         font-weight: 700;
+
     }
+
 
     .form-group input {
+
         width: 100%;
+
         min-height: 50px;
+
         padding: 10px 14px;
+
         border: 1px solid var(--border);
+
         border-radius: 11px;
+
         outline: none;
+
         background: #fff;
+
         color: var(--text);
-        transition: border-color 0.2s ease, box-shadow 0.2s ease;
+
+        transition:
+            border-color 0.2s ease,
+            box-shadow 0.2s ease;
+
     }
+
 
     .form-group input:focus {
+
         border-color: var(--accent);
-        box-shadow: 0 0 0 3px rgba(24, 166, 200, 0.1);
+
+        box-shadow:
+            0 0 0 3px rgba(24, 166, 200, 0.1);
+
     }
+
 
     .password-wrapper {
+
         position: relative;
+
     }
+
 
     .password-wrapper input {
+
         padding-left: 55px;
+
     }
+
 
     .password-toggle {
+
         position: absolute;
+
         left: 10px;
+
         top: 50%;
+
         transform: translateY(-50%);
+
         border: none;
+
         background: transparent;
+
         cursor: pointer;
+
         font-size: 18px;
+
         padding: 5px;
+
     }
+
 
     .forgot-password {
+
         text-align: left;
+
         margin-top: -5px;
+
     }
+
 
     .forgot-password button {
+
         border: none;
+
         background: transparent;
+
         color: var(--accent);
-        cursor: pointer;
+
         font-size: 13px;
+
         font-weight: 700;
+
+        cursor: pointer;
+
+        padding: 0;
+
     }
+
 
     .auth-submit {
+
         width: 100%;
+
         border: none;
-        margin-top: 5px;
+
+        margin-top: 4px;
+
     }
 
+
     .divider {
+
         display: flex;
+
         align-items: center;
+
         gap: 12px;
+
         margin: 22px 0;
+
         color: var(--text-light);
+
         font-size: 13px;
+
     }
+
 
     .divider::before,
     .divider::after {
+
         content: "";
+
         flex: 1;
+
         height: 1px;
+
         background: var(--border);
+
     }
+
 
     .google-btn {
+
         width: 100%;
+
         min-height: 50px;
+
         display: flex;
+
         align-items: center;
+
         justify-content: center;
+
         gap: 10px;
+
         border: 1px solid var(--border);
+
         border-radius: 11px;
+
         background: #fff;
+
         color: var(--text);
+
         font-weight: 700;
+
         cursor: pointer;
+
         transition: 0.2s ease;
+
     }
+
 
     .google-btn:hover {
+
         border-color: var(--accent);
+
         background: var(--accent-light);
+
     }
+
+
+    .google-btn:disabled {
+
+        opacity: 0.7;
+
+        cursor: not-allowed;
+
+    }
+
 
     .google-icon {
+
         font-size: 20px;
+
         font-weight: 900;
+
     }
+
 
     .auth-message {
+
         display: none;
+
         margin-top: 16px;
+
         padding: 12px 14px;
+
         border-radius: 10px;
+
         text-align: center;
+
         font-size: 13px;
+
+        line-height: 1.8;
+
     }
+
 
     .auth-message.error {
+
         display: block;
+
         background: #fff0f0;
+
         color: #b42318;
+
     }
+
+
+    .auth-message.warning {
+
+        display: block;
+
+        background: #fff8e7;
+
+        color: #9a6700;
+
+    }
+
 
     .auth-message.success {
+
         display: block;
+
         background: #ecfdf3;
+
         color: #067647;
+
     }
+
 
     .register-link {
+
         margin-top: 24px;
+
         text-align: center;
+
         color: var(--text-light);
+
         font-size: 14px;
+
     }
+
 
     .register-link a {
+
         color: var(--accent);
+
         font-weight: 800;
+
     }
+
 
     .back-home {
+
         display: block;
+
         margin-top: 18px;
+
         text-align: center;
+
         color: var(--text-light);
+
         font-size: 13px;
+
     }
 
+
     .back-home:hover {
+
         color: var(--accent);
+
     }
+
 
     @media (max-width: 600px) {
 
         .auth-page {
+
             padding: 30px 12px;
+
         }
+
 
         .auth-card {
+
             padding: 26px 20px;
+
             border-radius: 20px;
+
         }
 
+
         .auth-heading h1 {
+
             font-size: 26px;
+
         }
 
     }
 
 </style>
 
-</head><body><!-- HEADER -->
+</head><body><!-- ================================
+     HEADER
+================================ --><header class="site-header"><div class="container header-inner">
 
-<header class="site-header">
+    <a
+        href="index.html"
+        class="brand"
+    >
 
-    <div class="container header-inner">
+        <span class="brand-icon">
+            🩺
+        </span>
 
-        <a href="index.html" class="brand">
+        <span class="brand-text">
+            مسار التمريض
+        </span>
 
-            <span class="brand-icon">
-                🩺
-            </span>
+    </a>
 
-            <span class="brand-text">
-                مسار التمريض
-            </span>
 
+    <div class="header-actions">
+
+        <a
+            href="index.html"
+            class="btn btn-outline"
+        >
+            الرئيسية
         </a>
-
-
-        <div class="header-actions">
-
-            <a
-                href="index.html"
-                class="btn btn-outline"
-            >
-                الرئيسية
-            </a>
-
-        </div>
 
     </div>
 
-</header>
+</div>
+
+</header><!-- ================================
+     LOGIN
+================================ --><main class="auth-page"><div class="auth-card">
+
+
+    <div class="auth-logo">
+        🩺
+    </div>
+
+
+    <div class="auth-heading">
+
+        <h1>
+            تسجيل الدخول
+        </h1>
+
+        <p>
+            سجّل الدخول للوصول إلى حسابك في مسار التمريض
+        </p>
+
+    </div>
 
 
 
-<!-- LOGIN -->
+    <!-- ============================
+         LOGIN FORM
+    ============================= -->
 
-<main class="auth-page">
+    <form
+        id="loginForm"
+        class="auth-form"
+    >
 
-    <div class="auth-card">
 
+        <div class="form-group">
 
-        <div class="auth-logo">
-            🩺
+            <label for="email">
+                البريد الإلكتروني
+            </label>
+
+            <input
+                type="email"
+                id="email"
+                name="email"
+                placeholder="example@email.com"
+                autocomplete="email"
+                required
+            >
+
         </div>
 
 
-        <div class="auth-heading">
 
-            <h1>
-                تسجيل الدخول
-            </h1>
+        <div class="form-group">
 
-            <p>
-                ادخل إلى حسابك في مسار التمريض
-            </p>
+            <label for="password">
+                كلمة المرور
+            </label>
 
-        </div>
-
-
-        <form
-            id="loginForm"
-            class="auth-form"
-        >
-
-
-            <div class="form-group">
-
-                <label for="email">
-                    البريد الإلكتروني
-                </label>
+            <div class="password-wrapper">
 
                 <input
-                    type="email"
-                    id="email"
-                    name="email"
-                    placeholder="example@email.com"
-                    autocomplete="email"
+                    type="password"
+                    id="password"
+                    name="password"
+                    placeholder="كلمة المرور"
+                    autocomplete="current-password"
                     required
                 >
 
-            </div>
-
-
-
-            <div class="form-group">
-
-                <label for="password">
-                    كلمة المرور
-                </label>
-
-                <div class="password-wrapper">
-
-                    <input
-                        type="password"
-                        id="password"
-                        name="password"
-                        placeholder="أدخل كلمة المرور"
-                        autocomplete="current-password"
-                        required
-                    >
-
-                    <button
-                        type="button"
-                        class="password-toggle"
-                        id="passwordToggle"
-                        aria-label="إظهار كلمة المرور"
-                    >
-                        👁️
-                    </button>
-
-                </div>
-
-            </div>
-
-
-
-            <div class="forgot-password">
-
                 <button
                     type="button"
-                    id="forgotPassword"
+                    class="password-toggle"
+                    id="passwordToggle"
+                    aria-label="إظهار كلمة المرور"
                 >
-                    نسيت كلمة المرور؟
+                    👁️
                 </button>
 
             </div>
 
+        </div>
 
+
+
+        <div class="forgot-password">
 
             <button
-                type="submit"
-                class="btn btn-primary btn-large auth-submit"
+                type="button"
+                id="forgotPassword"
             >
-                تسجيل الدخول
+                نسيت كلمة المرور؟
             </button>
 
-
-        </form>
-
-
-
-        <div class="divider">
-            أو
         </div>
 
 
 
         <button
-            type="button"
-            class="google-btn"
-            id="googleLogin"
+            type="submit"
+            class="btn btn-primary btn-large auth-submit"
+            id="loginButton"
         >
-
-            <span class="google-icon">
-                G
-            </span>
-
-            <span>
-                المتابعة باستخدام Google
-            </span>
-
+            تسجيل الدخول
         </button>
 
 
-
-        <div
-            id="authMessage"
-            class="auth-message"
-        ></div>
+    </form>
 
 
 
-        <div class="register-link">
+    <!-- ============================
+         DIVIDER
+    ============================= -->
 
-            ليس لديك حساب؟
-
-            <a href="register.html">
-                إنشاء حساب جديد
-            </a>
-
-        </div>
+    <div class="divider">
+        أو
+    </div>
 
 
-        <a
-            href="index.html"
-            class="back-home"
-        >
-            ← العودة إلى الرئيسية
+
+    <!-- ============================
+         GOOGLE LOGIN
+    ============================= -->
+
+    <button
+        type="button"
+        class="google-btn"
+        id="googleLogin"
+    >
+
+        <span class="google-icon">
+            G
+        </span>
+
+        <span>
+            تسجيل الدخول باستخدام Google
+        </span>
+
+    </button>
+
+
+
+    <!-- ============================
+         MESSAGE
+    ============================= -->
+
+    <div
+        id="authMessage"
+        class="auth-message"
+    ></div>
+
+
+
+    <!-- ============================
+         REGISTER LINK
+    ============================= -->
+
+    <div class="register-link">
+
+        ليس لديك حساب؟
+
+        <a href="register.html">
+            إنشاء حساب جديد
         </a>
-
 
     </div>
 
-</main>
+
+
+    <a
+        href="index.html"
+        class="back-home"
+    >
+        ← العودة إلى الرئيسية
+    </a>
+
+
+</div>
+
+</main><!-- ================================
+     FIREBASE AUTH
+================================ --><script type="module">
+
+
+import {
+    loginWithEmail,
+    loginWithGoogle,
+    resetPassword
+} from "./src/firebase/auth.js";
+
+import {
+    getUserProfile
+} from "./src/firebase/auth.js";
 
 
 
-<!-- مؤقتًا: وظائف الواجهة فقط -->
+/* ================================
+   Elements
+================================ */
 
-<script>
-
-    const passwordInput =
-        document.getElementById("password");
-
-    const passwordToggle =
-        document.getElementById("passwordToggle");
-
-
-    passwordToggle.addEventListener(
-        "click",
-        function () {
-
-            if (
-                passwordInput.type === "password"
-            ) {
-
-                passwordInput.type = "text";
-
-                passwordToggle.textContent = "🙈";
-
-            } else {
-
-                passwordInput.type = "password";
-
-                passwordToggle.textContent = "👁️";
-
-            }
-
-        }
+const loginForm =
+    document.getElementById(
+        "loginForm"
     );
 
 
-    const loginForm =
-        document.getElementById("loginForm");
+const loginButton =
+    document.getElementById(
+        "loginButton"
+    );
 
 
-    loginForm.addEventListener(
-        "submit",
-        function (event) {
+const googleLogin =
+    document.getElementById(
+        "googleLogin"
+    );
 
-            event.preventDefault();
 
-            alert(
-                "صفحة تسجيل الدخول جاهزة. سيتم ربطها بـ Firebase في الخطوة التالية."
+const forgotPassword =
+    document.getElementById(
+        "forgotPassword"
+    );
+
+
+const authMessage =
+    document.getElementById(
+        "authMessage"
+    );
+
+
+const password =
+    document.getElementById(
+        "password"
+    );
+
+
+const passwordToggle =
+    document.getElementById(
+        "passwordToggle"
+    );
+
+
+
+/* ================================
+   Message
+================================ */
+
+function showMessage(
+    message,
+    type = "error"
+) {
+
+    authMessage.textContent =
+        message;
+
+
+    authMessage.className =
+        "auth-message " + type;
+
+}
+
+
+
+/* ================================
+   Password Toggle
+================================ */
+
+passwordToggle.addEventListener(
+    "click",
+    function () {
+
+        if (
+            password.type ===
+            "password"
+        ) {
+
+            password.type =
+                "text";
+
+            passwordToggle.textContent =
+                "🙈";
+
+        }
+
+        else {
+
+            password.type =
+                "password";
+
+            passwordToggle.textContent =
+                "👁️";
+
+        }
+
+    }
+);
+
+
+
+/* ================================
+   Check Account
+================================ */
+
+async function handleUserLogin(
+    user
+) {
+
+    const profile =
+        await getUserProfile(
+            user.uid
+        );
+
+
+    /* ============================
+       Profile Not Found
+    ============================= */
+
+    if (!profile) {
+
+        showMessage(
+            "تم تسجيل الدخول، لكن لم يتم العثور على بيانات حسابك. تواصل مع الإدارة."
+        );
+
+        return;
+
+    }
+
+
+    /* ============================
+       Admin
+    ============================= */
+
+    if (
+        profile.role ===
+        "admin"
+    ) {
+
+        window.location.href =
+            "admin/dashboard.html";
+
+        return;
+
+    }
+
+
+    /* ============================
+       Teacher
+    ============================= */
+
+    if (
+        profile.role ===
+        "teacher"
+    ) {
+
+        if (
+            profile.accountStatus !==
+            "approved"
+        ) {
+
+            showMessage(
+                "حساب المدرس ما زال قيد مراجعة الإدارة.",
+                "warning"
+            );
+
+            return;
+
+        }
+
+
+        window.location.href =
+            "teacher/dashboard.html";
+
+        return;
+
+    }
+
+
+    /* ============================
+       Student
+    ============================= */
+
+    if (
+        profile.role ===
+        "student"
+    ) {
+
+
+        /* ========================
+           Pending
+        ======================== */
+
+        if (
+            profile.accountStatus ===
+            "pending"
+        ) {
+
+            showMessage(
+                "حسابك تم إنشاؤه بنجاح، لكنه ما زال في انتظار موافقة الإدارة.",
+                "warning"
+            );
+
+            return;
+
+        }
+
+
+        /* ========================
+           Rejected
+        ======================== */
+
+        if (
+            profile.accountStatus ===
+            "rejected"
+        ) {
+
+            showMessage(
+                "عذرًا، تم رفض طلب حسابك. يرجى التواصل مع الإدارة."
+            );
+
+            return;
+
+        }
+
+
+        /* ========================
+           Not Approved
+        ======================== */
+
+        if (
+            profile.accountStatus !==
+            "approved"
+        ) {
+
+            showMessage(
+                "حسابك غير مفعل حاليًا. يرجى التواصل مع الإدارة.",
+                "warning"
+            );
+
+            return;
+
+        }
+
+
+        /* ========================
+           No Subscription
+        ======================== */
+
+        if (
+            profile.subscriptionStatus ===
+            "none"
+            ||
+            !profile.subscriptionStatus
+        ) {
+
+            showMessage(
+                "تمت الموافقة على حسابك، لكن لا يوجد اشتراك فعال حاليًا.",
+                "warning"
+            );
+
+            return;
+
+        }
+
+
+        /* ========================
+           Expired
+        ======================== */
+
+        if (
+            profile.subscriptionStatus ===
+            "expired"
+        ) {
+
+            showMessage(
+                "اشتراكك منتهي. يرجى تجديد الاشتراك للمتابعة.",
+                "warning"
+            );
+
+            return;
+
+        }
+
+
+        /* ========================
+           Active
+        ======================== */
+
+        if (
+            profile.subscriptionStatus ===
+            "active"
+        ) {
+
+            window.location.href =
+                "student/dashboard.html";
+
+            return;
+
+        }
+
+
+        showMessage(
+            "تعذر التحقق من حالة اشتراكك. تواصل مع الإدارة."
+        );
+
+        return;
+
+    }
+
+
+    /* ============================
+       Unknown Role
+    ============================= */
+
+    showMessage(
+        "نوع الحساب غير معروف. تواصل مع الإدارة."
+    );
+
+}
+
+
+
+/* ================================
+   Email Login
+================================ */
+
+loginForm.addEventListener(
+    "submit",
+    async function (event) {
+
+        event.preventDefault();
+
+
+        const email =
+            document
+                .getElementById(
+                    "email"
+                )
+                .value
+                .trim();
+
+
+        const passwordValue =
+            password.value;
+
+
+        if (!email || !passwordValue) {
+
+            showMessage(
+                "من فضلك أدخل البريد الإلكتروني وكلمة المرور."
+            );
+
+            return;
+
+        }
+
+
+        try {
+
+
+            loginButton.disabled =
+                true;
+
+
+            loginButton.textContent =
+                "جاري تسجيل الدخول...";
+
+
+            const user =
+                await loginWithEmail(
+                    email,
+                    passwordValue
+                );
+
+
+            await handleUserLogin(
+                user
+            );
+
+
+        }
+
+
+        catch (error) {
+
+
+            console.error(error);
+
+
+            let message =
+                "حدث خطأ أثناء تسجيل الدخول.";
+
+
+            if (
+                error.code ===
+                "auth/invalid-credential"
+            ) {
+
+                message =
+                    "البريد الإلكتروني أو كلمة المرور غير صحيحة.";
+
+            }
+
+
+            else if (
+                error.code ===
+                "auth/user-not-found"
+            ) {
+
+                message =
+                    "لا يوجد حساب بهذا البريد الإلكتروني.";
+
+            }
+
+
+            else if (
+                error.code ===
+                "auth/wrong-password"
+            ) {
+
+                message =
+                    "كلمة المرور غير صحيحة.";
+
+            }
+
+
+            else if (
+                error.code ===
+                "auth/invalid-email"
+            ) {
+
+                message =
+                    "البريد الإلكتروني غير صحيح.";
+
+            }
+
+
+            else if (
+                error.code ===
+                "auth/too-many-requests"
+            ) {
+
+                message =
+                    "تم إجراء محاولات كثيرة. حاول مرة أخرى لاحقًا.";
+
+            }
+
+
+            else if (
+                error.code ===
+                "auth/network-request-failed"
+            ) {
+
+                message =
+                    "حدثت مشكلة في الاتصال بالإنترنت.";
+
+            }
+
+
+            showMessage(
+                message
             );
 
         }
-    );
 
 
-    document
-        .getElementById("googleLogin")
-        .addEventListener(
-            "click",
-            function () {
+        finally {
 
-                alert(
-                    "Google Login سيتم ربطه بـ Firebase في الخطوة التالية."
-                );
+            loginButton.disabled =
+                false;
+
+
+            loginButton.textContent =
+                "تسجيل الدخول";
+
+        }
+
+    }
+);
+
+
+
+/* ================================
+   Google Login
+================================ */
+
+googleLogin.addEventListener(
+    "click",
+    async function () {
+
+        try {
+
+
+            googleLogin.disabled =
+                true;
+
+
+            googleLogin.innerHTML =
+                "جاري تسجيل الدخول باستخدام Google...";
+
+
+            const user =
+                await loginWithGoogle();
+
+
+            await handleUserLogin(
+                user
+            );
+
+
+        }
+
+
+        catch (error) {
+
+
+            console.error(error);
+
+
+            let message =
+                "تعذر تسجيل الدخول باستخدام Google.";
+
+
+            if (
+                error.code ===
+                "auth/popup-closed-by-user"
+            ) {
+
+                message =
+                    "تم إغلاق نافذة Google.";
 
             }
-        );
 
 
-    document
-        .getElementById("forgotPassword")
-        .addEventListener(
-            "click",
-            function () {
+            else if (
+                error.code ===
+                "auth/popup-blocked"
+            ) {
 
-                alert(
-                    "سيتم تفعيل استعادة كلمة المرور مع Firebase."
-                );
+                message =
+                    "المتصفح منع نافذة Google. اسمح بالنوافذ المنبثقة وحاول مرة أخرى.";
 
             }
-        );
 
-</script>
 
-</body></html>
+            else if (
+                error.code ===
+                "auth/network-request-failed"
+            ) {
+
+                message =
+                    "حدثت مشكلة في الاتصال بالإنترنت.";
+
+            }
+
+
+            showMessage(
+                message
+            );
+
+        }
+
+
+        finally {
+
+            googleLogin.disabled =
+                false;
+
+
+            googleLogin.innerHTML =
+                '<span class="google-icon">G</span><span>تسجيل الدخول باستخدام Google</span>';
+
+        }
+
+    }
+);
+
+
+
+/* ================================
+   Forgot Password
+================================ */
+
+forgotPassword.addEventListener(
+    "click",
+    async function () {
+
+
+        const email =
+            document
+                .getElementById(
+                    "email"
+                )
+                .value
+                .trim();
+
+
+        if (!email) {
+
+            showMessage(
+                "اكتب بريدك الإلكتروني أولًا، ثم اضغط «نسيت كلمة المرور؟»."
+            );
+
+            return;
+
+        }
+
+
+        try {
+
+
+            forgotPassword.disabled =
+                true;
+
+
+            forgotPassword.textContent =
+                "جاري الإرسال...";
+
+
+            await resetPassword(
+                email
+            );
+
+
+            showMessage(
+                "تم إرسال رابط إعادة تعيين كلمة المرور إلى بريدك الإلكتروني.",
+                "success"
+            );
+
+
+        }
+
+
+        catch (error) {
+
+
+            console.error(error);
+
+
+            let message =
+                "تعذر إرسال رابط إعادة تعيين كلمة المرور.";
+
+
+            if (
+                error.code ===
+                "auth/user-not-found"
+            ) {
+
+                message =
+                    "لا يوجد حساب بهذا البريد الإلكتروني.";
+
+            }
+
+
+            else if (
+                error.code ===
+                "auth/invalid-email"
+            ) {
+
+                message =
+                    "البريد الإلكتروني غير صحيح.";
+
+            }
+
+
+            showMessage(
+                message
+            );
+
+        }
+
+
+        finally {
+
+            forgotPassword.disabled =
+                false;
+
+
+            forgotPassword.textContent =
+                "نسيت كلمة المرور؟";
+
+        }
+
+    }
+);
+
+
+</script></body></html>
