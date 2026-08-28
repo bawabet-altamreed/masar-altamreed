@@ -1,401 +1,588 @@
-<!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<!DOCTYPE html><html lang="ar" dir="rtl"><head><meta charset="UTF-8">
 
-<head>
-    <meta charset="UTF-8">
+<meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+>
 
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    >
+<meta
+    name="description"
+    content="مسار التمريض — منصة تعليمية متخصصة لطلاب التمريض في مصر."
+>
 
-    <meta
-        name="description"
-        content="مسار التمريض — منصة تعليمية متخصصة لطلاب التمريض في مصر."
-    >
+<meta
+    name="theme-color"
+    content="#0b2a43"
+>
 
-    <meta
-        name="theme-color"
-        content="#0b2a43"
-    >
+<meta
+    name="author"
+    content="مسار التمريض"
+>
 
-    <title>مسار التمريض | منصة تعليمية لطلاب التمريض</title>
+<title>
+    مسار التمريض | منصة تعليمية لطلاب التمريض
+</title>
 
-    <link rel="stylesheet" href="/src/styles/main.css">
-</head>
+</head><body><!-- =========================
+     Header
+========================== -->
 
-<body>
+<header class="site-header">
 
-    <header class="site-header">
+    <div class="container header-inner">
 
-        <div class="container header-inner">
+        <a
+            href="/"
+            class="brand"
+            aria-label="مسار التمريض"
+        >
 
-            <a href="/" class="brand">
-                <span class="brand-icon">🩺</span>
+            <span class="brand-icon">
+                🩺
+            </span>
 
-                <span class="brand-text">
-                    مسار التمريض
-                </span>
+            <span class="brand-text">
+                مسار التمريض
+            </span>
+
+        </a>
+
+
+        <nav
+            class="main-nav"
+            aria-label="القائمة الرئيسية"
+        >
+
+            <a href="#about">
+                عن المنصة
             </a>
 
-            <nav class="main-nav">
+            <a href="#stages">
+                المراحل
+            </a>
 
-                <a href="#about">
-                    عن المنصة
-                </a>
+            <a href="#teachers">
+                المدرسون
+            </a>
 
-                <a href="#stages">
-                    المراحل
-                </a>
+        </nav>
 
-                <a href="#teachers">
-                    المدرسون
-                </a>
 
-            </nav>
+        <div class="header-actions">
 
-            <div class="header-actions">
+            <a
+                href="/login.html"
+                class="btn btn-outline"
+            >
+                تسجيل الدخول
+            </a>
 
-                <a
-                    href="/login.html"
-                    class="btn btn-outline"
-                >
-                    تسجيل الدخول
-                </a>
+            <a
+                href="/register.html"
+                class="btn btn-primary"
+            >
+                إنشاء حساب
+            </a>
 
-                <a
-                    href="/register.html"
-                    class="btn btn-primary"
-                >
-                    إنشاء حساب
-                </a>
+        </div>
+
+    </div>
+
+</header>
+
+
+<!-- =========================
+     Main
+========================== -->
+
+<main>
+
+
+    <!-- =========================
+         Hero Section
+    ========================== -->
+
+    <section class="hero">
+
+        <div class="container hero-content">
+
+
+            <div class="hero-text">
+
+                <span class="hero-badge">
+                    🩺 منصة تعليمية متخصصة في التمريض
+                </span>
+
+
+                <h1>
+
+                    طريقك الأفضل
+
+                    <br>
+
+                    <span>
+                        لتعلّم التمريض
+                    </span>
+
+                </h1>
+
+
+                <p>
+
+                    منصة تعليمية متخصصة لطلاب التمريض في مصر،
+                    تجمع المحاضرات المباشرة، التسجيلات،
+                    الاختبارات، الجداول، متابعة المستوى
+                    والتفاعل التعليمي في مكان واحد.
+
+                </p>
+
+
+                <div class="hero-actions">
+
+                    <a
+                        href="/register.html"
+                        class="btn btn-primary btn-large"
+                    >
+                        ابدأ رحلتك
+                    </a>
+
+
+                    <a
+                        href="#about"
+                        class="btn btn-outline btn-large"
+                    >
+                        اكتشف المنصة
+                    </a>
+
+                </div>
+
+            </div>
+
+
+            <div class="hero-card">
+
+                <div class="hero-card-icon">
+                    🩺
+                </div>
+
+
+                <h2>
+
+                    تعليم التمريض
+
+                    <br>
+
+                    بشكل مختلف
+
+                </h2>
+
+
+                <p>
+
+                    Live Classes
+                    •
+                    Recordings
+                    •
+                    Exams
+                    •
+                    Progress
+                    •
+                    Leaderboard
+
+                </p>
 
             </div>
 
         </div>
 
-    </header>
+    </section>
 
 
-    <main>
 
-        <!-- Hero -->
+    <!-- =========================
+         About Section
+    ========================== -->
 
-        <section class="hero">
+    <section
+        id="about"
+        class="section"
+    >
 
-            <div class="container hero-content">
+        <div class="container">
 
-                <div class="hero-text">
 
-                    <span class="hero-badge">
-                        🩺 منصة تعليمية متخصصة في التمريض
-                    </span>
+            <div class="section-heading">
 
-                    <h1>
-                        طريقك الأفضل
-                        <br>
-                        <span>لتعلّم التمريض</span>
-                    </h1>
+                <span>
+                    لماذا مسار التمريض؟
+                </span>
 
-                    <p>
-                        منصة تعليمية تجمع المحاضرات المباشرة،
-                        التسجيلات، الاختبارات، الجداول، متابعة
-                        المستوى والتفاعل التعليمي في مكان واحد.
-                    </p>
 
-                    <div class="hero-actions">
+                <h2>
+                    كل ما يحتاجه طالب التمريض في مكان واحد
+                </h2>
 
-                        <a
-                            href="/register.html"
-                            class="btn btn-primary btn-large"
-                        >
-                            ابدأ رحلتك
-                        </a>
 
-                        <a
-                            href="#about"
-                            class="btn btn-outline btn-large"
-                        >
-                            اكتشف المنصة
-                        </a>
+                <p>
 
+                    بنبني تجربة تعليمية متكاملة تساعد الطالب
+                    على تنظيم دراسته، حضور المحاضرات،
+                    متابعة مستواه والاستعداد للاختبارات.
+
+                </p>
+
+            </div>
+
+
+
+            <div class="features-grid">
+
+
+                <!-- Feature 1 -->
+
+                <article class="feature-card">
+
+                    <div class="feature-icon">
+                        🔴
                     </div>
 
-                </div>
 
+                    <h3>
+                        محاضرات Live
+                    </h3>
 
-                <div class="hero-card">
-
-                    <div class="hero-card-icon">
-                        🩺
-                    </div>
-
-                    <h2>
-                        تعليم التمريض
-                        <br>
-                        بشكل مختلف
-                    </h2>
 
                     <p>
-                        Live Classes • Recordings • Exams
-                        • Progress • Leaderboard
+
+                        حضور المحاضرات مباشرة مع المدرسين
+                        والتفاعل أثناء الشرح.
+
                     </p>
 
-                </div>
+                </article>
+
+
+
+                <!-- Feature 2 -->
+
+                <article class="feature-card">
+
+                    <div class="feature-icon">
+                        🎥
+                    </div>
+
+
+                    <h3>
+                        التسجيلات
+                    </h3>
+
+
+                    <p>
+
+                        بعد انتهاء المحاضرة يتم تجهيز
+                        التسجيل وإتاحته للطلاب على المنصة.
+
+                    </p>
+
+                </article>
+
+
+
+                <!-- Feature 3 -->
+
+                <article class="feature-card">
+
+                    <div class="feature-icon">
+                        📅
+                    </div>
+
+
+                    <h3>
+                        جدولك الأسبوعي
+                    </h3>
+
+
+                    <p>
+
+                        تعرف محاضراتك واختباراتك
+                        ومهامك القادمة من خلال جدول منظم.
+
+                    </p>
+
+                </article>
+
+
+
+                <!-- Feature 4 -->
+
+                <article class="feature-card">
+
+                    <div class="feature-icon">
+                        🏆
+                    </div>
+
+
+                    <h3>
+                        نظام الإنجازات
+                    </h3>
+
+
+                    <p>
+
+                        XP ومستويات وترتيب تنافسي
+                        لتحفيزك على الاستمرار والتقدم.
+
+                    </p>
+
+                </article>
 
             </div>
 
-        </section>
+        </div>
+
+    </section>
 
 
-        <!-- About -->
 
-        <section
-            id="about"
-            class="section"
-        >
+    <!-- =========================
+         Stages Section
+    ========================== -->
 
-            <div class="container">
+    <section
+        id="stages"
+        class="section section-alt"
+    >
+
+        <div class="container">
+
+
+            <div class="section-heading">
+
+                <span>
+                    المراحل التعليمية
+                </span>
+
+
+                <h2>
+                    مسارك يبدأ من هنا
+                </h2>
+
+
+                <p>
+
+                    المنصة مصممة لتخدم طلاب التمريض
+                    في المراحل المختلفة.
+
+                </p>
+
+            </div>
+
+
+
+            <div class="stages-grid">
+
+
+                <article class="stage-card">
+
+                    <span>
+                        🎓
+                    </span>
+
+                    <h3>
+                        أولى ثانوي تمريض
+                    </h3>
+
+                </article>
+
+
+
+                <article class="stage-card">
+
+                    <span>
+                        🎓
+                    </span>
+
+                    <h3>
+                        تانية ثانوي تمريض
+                    </h3>
+
+                </article>
+
+
+
+                <article class="stage-card">
+
+                    <span>
+                        🎓
+                    </span>
+
+                    <h3>
+                        تالتة ثانوي تمريض
+                    </h3>
+
+                </article>
+
+
+
+                <article class="stage-card">
+
+                    <span>
+                        🏥
+                    </span>
+
+                    <h3>
+                        أولى معهد تمريض
+                    </h3>
+
+                </article>
+
+
+
+                <article class="stage-card">
+
+                    <span>
+                        🏥
+                    </span>
+
+                    <h3>
+                        تانية معهد تمريض
+                    </h3>
+
+                </article>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =========================
+         Teachers Section
+    ========================== -->
+
+    <section
+        id="teachers"
+        class="section"
+    >
+
+        <div class="container">
+
+
+            <div class="teacher-section">
 
                 <div class="section-heading">
 
                     <span>
-                        لماذا مسار التمريض؟
+                        المدرسون
                     </span>
 
-                    <h2>
-                        كل ما يحتاجه طالب التمريض
-                        في مكان واحد
-                    </h2>
-
-                </div>
-
-
-                <div class="features-grid">
-
-                    <article class="feature-card">
-
-                        <div class="feature-icon">
-                            🔴
-                        </div>
-
-                        <h3>
-                            محاضرات Live
-                        </h3>
-
-                        <p>
-                            حضور المحاضرات مباشرة مع
-                            المدرسين والتفاعل أثناء الشرح.
-                        </p>
-
-                    </article>
-
-
-                    <article class="feature-card">
-
-                        <div class="feature-icon">
-                            🎥
-                        </div>
-
-                        <h3>
-                            التسجيلات
-                        </h3>
-
-                        <p>
-                            المحاضرات المباشرة يتم تسجيلها
-                            وإتاحتها للطلاب بعد اعتمادها.
-                        </p>
-
-                    </article>
-
-
-                    <article class="feature-card">
-
-                        <div class="feature-icon">
-                            📅
-                        </div>
-
-                        <h3>
-                            جدولك الأسبوعي
-                        </h3>
-
-                        <p>
-                            تعرف محاضراتك واختباراتك
-                            ومهامك القادمة بسهولة.
-                        </p>
-
-                    </article>
-
-
-                    <article class="feature-card">
-
-                        <div class="feature-icon">
-                            🏆
-                        </div>
-
-                        <h3>
-                            نظام الإنجازات
-                        </h3>
-
-                        <p>
-                            XP ومستويات وترتيب تنافسي
-                            لتحفيزك على الاستمرار.
-                        </p>
-
-                    </article>
-
-                </div>
-
-            </div>
-
-        </section>
-
-
-        <!-- Stages -->
-
-        <section
-            id="stages"
-            class="section section-alt"
-        >
-
-            <div class="container">
-
-                <div class="section-heading">
-
-                    <span>
-                        المراحل التعليمية
-                    </span>
-
-                    <h2>
-                        مسارك يبدأ من هنا
-                    </h2>
-
-                </div>
-
-
-                <div class="stages-grid">
-
-                    <article class="stage-card">
-
-                        <span>🎓</span>
-
-                        <h3>
-                            أولى ثانوي تمريض
-                        </h3>
-
-                    </article>
-
-
-                    <article class="stage-card">
-
-                        <span>🎓</span>
-
-                        <h3>
-                            تانية ثانوي تمريض
-                        </h3>
-
-                    </article>
-
-
-                    <article class="stage-card">
-
-                        <span>🎓</span>
-
-                        <h3>
-                            تالتة ثانوي تمريض
-                        </h3>
-
-                    </article>
-
-
-                    <article class="stage-card">
-
-                        <span>🏥</span>
-
-                        <h3>
-                            أولى معهد تمريض
-                        </h3>
-
-                    </article>
-
-
-                    <article class="stage-card">
-
-                        <span>🏥</span>
-
-                        <h3>
-                            تانية معهد تمريض
-                        </h3>
-
-                    </article>
-
-                </div>
-
-            </div>
-
-        </section>
-
-
-        <!-- Teachers -->
-
-        <section
-            id="teachers"
-            class="section"
-        >
-
-            <div class="container teacher-section">
-
-                <div class="section-heading">
-
-                    <span>
-                        نخبة من المدرسين
-                    </span>
 
                     <h2>
                         المدرس شريك في رحلتك التعليمية
                     </h2>
 
+
                     <p>
+
                         نعمل على بناء شبكة من المدرسين
-                        وأصحاب الخبرة في مجال التمريض.
+                        والدكاترة وأصحاب الخبرة في مجال
+                        التمريض لتقديم محتوى تعليمي قوي
+                        للطلاب.
+
                     </p>
+
+                </div>
+
+
+                <div class="teacher-cta">
+
+                    <a
+                        href="/register.html"
+                        class="btn btn-primary btn-large"
+                    >
+                        انضم إلى مسار التمريض
+                    </a>
 
                 </div>
 
             </div>
 
-        </section>
+        </div>
 
-    </main>
+    </section>
 
 
-    <footer class="site-footer">
+</main>
 
-        <div class="container footer-inner">
 
-            <div>
 
-                <strong>
-                    🩺 مسار التمريض
-                </strong>
+<!-- =========================
+     Footer
+========================== -->
 
-                <p>
-                    منصة تعليمية متخصصة لطلاب التمريض.
-                </p>
+<footer class="site-footer">
 
-            </div>
+    <div class="container footer-inner">
+
+
+        <div class="footer-brand">
+
+            <strong>
+                🩺 مسار التمريض
+            </strong>
+
 
             <p>
-                © 2026 مسار التمريض
+                منصة تعليمية متخصصة لطلاب التمريض.
             </p>
 
         </div>
 
-    </footer>
+
+        <div class="footer-links">
+
+            <a href="#about">
+                عن المنصة
+            </a>
+
+            <a href="#stages">
+                المراحل
+            </a>
+
+            <a href="#teachers">
+                المدرسون
+            </a>
+
+            <a href="/login.html">
+                تسجيل الدخول
+            </a>
+
+        </div>
 
 
-    <script type="module" src="/src/main.js"></script>
+        <p class="footer-copy">
 
-</body>
+            © 2026 مسار التمريض
+            — جميع الحقوق محفوظة.
 
-</html>
+        </p>
+
+    </div>
+
+</footer>
+
+
+
+<!-- =========================
+     JavaScript
+========================== -->
+
+<script
+    type="module"
+    src="/src/main.js"
+></script>
+
+</body></html>
