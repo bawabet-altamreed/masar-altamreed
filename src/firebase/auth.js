@@ -202,21 +202,65 @@ return onAuthStateChanged(
 }
 
 /* ================================
-تصدير الوظائف
+حفظ المرحلة لحساب Google
+================================ */
+
+async function saveGoogleStage(
+uid,
+stage
+) {
+
+if (!uid) {
+
+    throw new Error(
+        "User ID is required."
+    );
+
+}
+
+
+if (!stage) {
+
+    throw new Error(
+        "Stage is required."
+    );
+
+}
+
+
+await setDoc(
+    doc(db, "users", uid),
+    {
+
+        stage: stage,
+
+        role: "student",
+
+        accountStatus: "pending",
+
+        subscriptionStatus: "none",
+
+        provider: "google"
+
+    },
+    {
+        merge: true
+    }
+);
+
+}
+
+/* ================================
+تصدير الوظيفة
 ================================ */
 
 export {
-
 registerWithEmail,
-
 loginWithEmail,
-
 loginWithGoogle,
-
+saveGoogleStage,
 resetPassword,
-
 logout,
-
 watchAuthState
-
 };
+
