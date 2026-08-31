@@ -1,0 +1,1 @@
+import { start } from "./common.js"; start("الملف الشخصي",u=>`<div class="card"><h1>الملف الشخصي</h1><p>بيانات حساب المدرس.</p></div>`);

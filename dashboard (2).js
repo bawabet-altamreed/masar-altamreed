@@ -1,0 +1,1 @@
+import { start } from "./common.js"; start("مركز التحكم",()=>`<h1>مركز تحكم الإدارة</h1><div class="grid"><div class="card">الطلاب والاشتراكات</div><div class="card">المدرسون والصلاحيات</div><div class="card">المحاضرات والاختبارات</div></div>`);

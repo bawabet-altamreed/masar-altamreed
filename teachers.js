@@ -1,0 +1,1 @@
+import { start } from "./common.js"; start("إدارة المدرسين",()=>`<div class="card"><h1>إدارة المدرسين</h1><p>إضافة وإيقاف المدرسين وتحديد الصلاحيات تتم عبر Cloud Functions.</p></div>`);

@@ -1,0 +1,1 @@
+import { start } from "./common.js"; start("الجدول",u=>`<div class="card"><h1>الجدول</h1><p>عرض جدول المحاضرات التابعة لك.</p></div>`);

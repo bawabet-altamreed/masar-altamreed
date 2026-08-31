@@ -1,0 +1,1 @@
+import { start } from "./common.js"; start("إعدادات المنصة",()=>`<div class="card"><h1>إعدادات المنصة</h1><p>إعدادات عامة وإشعارات.</p></div>`);

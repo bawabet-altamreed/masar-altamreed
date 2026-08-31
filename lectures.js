@@ -1,0 +1,1 @@
+import { start } from "./common.js"; start("إدارة المحاضرات",u=>`<div class="card"><h1>إدارة المحاضرات</h1><p>إنشاء المحاضرات والربط بمزود Live يتم من خلال Cloud Functions.</p></div>`);

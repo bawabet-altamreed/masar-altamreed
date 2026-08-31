@@ -1,0 +1,1 @@
+import { start } from "./common.js"; import { fmtDate,statusText } from "../core/ui.js"; start("الملف الشخصي",u=>`<div class="card"><p>الاسم: <b>${u.name||""}</b></p><p>كود الاشتراك: <b>${u.subscriptionCode||""}</b></p><p>المرحلة: ${u.stage||""}</p><p>الحالة: ${statusText(u.subscriptionStatus)}</p><p>النهاية: ${fmtDate(u.subscriptionEnd)}</p></div>`);

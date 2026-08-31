@@ -1,0 +1,1 @@
+import { start } from "./common.js"; start("الطلاب",u=>`<div class="card"><h1>الطلاب</h1><p>عرض الطلاب المصرح لك بمشاهدتهم فقط.</p></div>`);

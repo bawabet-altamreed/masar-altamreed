@@ -1,0 +1,1 @@
+import { start } from "./common.js"; start("إدارة الاختبارات",()=>`<div class="card"><h1>إدارة الاختبارات</h1><p>متابعة الاختبارات والنتائج.</p></div>`);

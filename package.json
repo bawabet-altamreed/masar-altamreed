@@ -1,0 +1,5 @@
+{
+  "name": "masar-altamreed",
+  "private": true,
+  "scripts": { "deploy:rules": "firebase deploy --only firestore:rules,storage:rules" }
+}
