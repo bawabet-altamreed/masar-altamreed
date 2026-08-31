@@ -1,1 +1,0 @@
-import { guard } from "../core/guard.js"; import { shell } from "../core/layout.js"; export function start(title,render){guard("teacher");window.addEventListener("masar-ready",e=>document.querySelector("#root").innerHTML=shell("teacher",title,render(e.detail)));}
