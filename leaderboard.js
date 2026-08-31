@@ -1,1 +1,0 @@
-import { start } from "./common.js"; start("Leaderboard",u=>`<div class="card"><h2>الترتيب</h2><p>يُحسب من النتائج المنشورة للمرحلة ${u.stage||""}.</p></div>`);
